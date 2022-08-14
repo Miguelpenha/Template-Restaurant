@@ -23,7 +23,7 @@ export default function List() {
 
           Toast.show({
             type: 'error',
-            text1: 'Todos os prato foram deletados com sucesso'
+            text1: 'Todos os pratos foram deletados com sucesso'
           })
         }}>
           <IconDeleteAll name="delete" size={30}/>
