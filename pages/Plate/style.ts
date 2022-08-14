@@ -103,6 +103,7 @@ export const ContainerCountIconLeft = styled.TouchableOpacity`
 export const ContainerCountIconRight = styled.TouchableOpacity`
     width: 30%;
     margin: auto;
+    align-items: center;
 `
 
 export const CountIcon = styled.Text`
@@ -111,7 +112,6 @@ export const CountIcon = styled.Text`
 `
 
 export const Count = styled.Text`
-    width: 20%;
     margin: auto;
     font-size: ${RFPercentage(5)}px;
     color: ${props => props.theme.primary};

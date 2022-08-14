@@ -38,12 +38,12 @@ function Settings() {
                     />
                 </ContainerSwitch>
                 <Button onPress={async () => {
-                    await AsyncStorage.removeItem('@templateExpoNavigationStorageTS:theme')
-                    await AsyncStorage.removeItem('@templateExpoNavigationStorageTS:favorites')
+                    await AsyncStorage.removeItem('@templateRestaurant:theme')
+                    await AsyncStorage.removeItem('@templateRestaurant:favorites')
 
                     console.log(yellow('>> All data has been deleted'))
-                    console.log(red('   >> @templateExpoNavigationStorageTS:theme'))
-                    console.log(red('   >> @templateExpoNavigationStorageTS:favorites'))
+                    console.log(red('   >> @templateRestaurant:theme'))
+                    console.log(red('   >> @templateRestaurant:favorites'))
 
                     Toast.show({
                         type: 'error',

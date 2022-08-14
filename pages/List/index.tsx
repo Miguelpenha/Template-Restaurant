@@ -1,14 +1,17 @@
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import ContainerPd from '../../components/ContainerPd'
 import { ButtonBack, TextNotFound, Items } from './style'
 import Item from './Item'
 import useList from '../../listContext'
 import { ListRenderItemInfo } from 'react-native'
 import { IItemList } from '../../types'
+import { useCallback, useState } from 'react'
 
 export default function List() {
   const navigation = useNavigation()
-  const { list, setItem } = useList()
+  const { list: listOrigin, setItem } = useList()
+  const [list, setList] = useState([])
+  useFocusEffect(useCallback(() => setList(listOrigin), [listOrigin]))
   
   return (
     <ContainerPd scroll={false}>

@@ -67,7 +67,7 @@ export default function Plate() {
                     type: 'error',
                     text1: 'Prato removido com sucesso'
                   })
-                  navigation.navigate('Home')
+                  navigation.goBack()
                 }
               }}>
                 <CountIcon>
@@ -107,7 +107,7 @@ export default function Plate() {
                 })
               }
 
-              navigation.navigate('Home')
+              navigation.goBack()
             }}>
               <TextButtonSubmit>{!item.onList ? 'Adicionar' : 'Editar'}{'\n'}{toFormatSafe(dinero({ amount: quantity*item.price, currency: 'BRL' }))}</TextButtonSubmit>
             </ButtonSubmit>

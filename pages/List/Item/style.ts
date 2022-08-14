@@ -15,18 +15,24 @@ export const Container = styled.TouchableOpacity`
 export const Photo = styled.Image`
     width: 25%;
     aspect-ratio: 1;
-    align-self: center;
     border-radius: 10px;
 `
 
 export const Informations = styled.View`
+    width: 70%;
     margin-left: 8%;
     margin-right: auto;
 `
 
 export const Name = styled.Text`
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     font-size: ${RFPercentage(2.5)}px;
+    color: ${props => props.theme.primary};
+`
+
+export const Note = styled.Text`
+    margin-bottom: 10%;
+    font-size: ${RFPercentage(2.2)}px;
     color: ${props => props.theme.primary};
 `
 
@@ -38,6 +44,7 @@ export const Price = styled.Text`
 
 export const ContainerCount = styled.View`
     width: 32%;
+    margin-top: 15%;
     margin-left: auto;
     flex-direction: row;
     align-items: center;
@@ -64,7 +71,6 @@ export const CountIcon = styled.Text`
 `
 
 export const Count = styled.Text`
-    width: 20%;
     margin: auto;
     font-size: ${RFPercentage(4)}px;
     color: ${props => props.theme.primary};

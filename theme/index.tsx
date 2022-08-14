@@ -24,13 +24,13 @@ export const ThemeProvider: FC = ({ children }) => {
     }, [themeName])
     
     async function loadTheme() {
-        const themeName = await AsyncStorage.getItem('@templateExpoNavigationStorageTS:theme') as (IthemeType | null)
+        const themeName = await AsyncStorage.getItem('@templateRestaurant:theme') as (IthemeType | null)
         
         if (themeName) {
             setThemeName(themeName)
         } else {
             setThemeName(Appearance.getColorScheme() || 'light')
-            AsyncStorage.setItem('@templateExpoNavigationStorageTS:theme', Appearance.getColorScheme() || 'light')
+            AsyncStorage.setItem('@templateRestaurant:theme', Appearance.getColorScheme() || 'light')
         }
     }
 
@@ -43,7 +43,7 @@ export const ThemeProvider: FC = ({ children }) => {
             themeNameSelect = themeName === ThemeNameType.light ? ThemeNameType.dark : ThemeNameType.light
         }
 
-        AsyncStorage.setItem('@templateExpoNavigationStorageTS:theme', themeNameSelect)
+        AsyncStorage.setItem('@templateRestaurant:theme', themeNameSelect)
 
         setThemeName(themeNameSelect)
     }
