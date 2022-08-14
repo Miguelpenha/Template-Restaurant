@@ -40,10 +40,6 @@ export const Price = styled.Text`
     color: ${props => props.theme.color};
 `
 
-export const Weight = styled.Text`
-    color: ${props => props.theme.color};
-`
-
 export const Photo = styled.Image`
     width: 30%;
     aspect-ratio: 1;

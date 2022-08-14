@@ -17,12 +17,12 @@ export type IthemeType = keyof typeof ThemeNameType
 
 export type Inavigation = {
   Home: {
-    balance: number
+    list: IPlate[]
   }
   Settings: undefined
   Plate: {
     plate: IPlate
-    balance: number
+    list: IPlate[]
   }
 }
 

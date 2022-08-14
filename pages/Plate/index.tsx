@@ -8,12 +8,12 @@ import dinero from 'dinero.js'
 
 interface IParams {
   plate: IPlate
-  balance: number
+  list: IPlate[]
 }
 
 export default function Plate() {
   const navigation = useNavigation()
-  const { plate, balance } = useRoute().params as IParams
+  const { plate, list } = useRoute().params as IParams
   const [note, setNote] = useState('')
   const [count, setCount] = useState(1)
   const theme = useTheme()
@@ -57,9 +57,11 @@ export default function Plate() {
             <CountIcon>+</CountIcon>
           </ContainerCountIconRight>
         </ContainerCount>
-        <ButtonSubmit onPress={() => navigation.navigate('Home', {
-          balance: balance+(count*plate.price)
-        })}>
+        <ButtonSubmit onPress={() =>
+          navigation.navigate('Home', {
+            list: [...list, plate]
+          })
+        }>
           <TextButtonSubmit>Adicionar{'\n'}{toFormatSafe(dinero({ amount: count*plate.price, currency: 'BRL' }))}</TextButtonSubmit>
         </ButtonSubmit>
       </ContainerCountAndButton>

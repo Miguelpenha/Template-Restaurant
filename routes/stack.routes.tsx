@@ -15,7 +15,7 @@ function StackRouter() {
             }}
         >
             <Screen name="Home" initialParams={{
-                balance: 0
+                list: []
             }} component={Home}/>
             <Screen name="Settings" component={Settings}/>
             <Screen name="Plate" component={Plate}/>

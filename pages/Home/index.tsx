@@ -4,14 +4,17 @@ import { Header, ContainerSettings, Settings, Title, Balance, Foods } from './st
 import plates from './plates'
 import Plate from '../../components/Plate'
 import dinero from 'dinero.js'
+import { IPlate } from '../../types'
+import { useEffect, useState } from 'react'
 
 interface IParams {
-  balance: number
+  list: IPlate[]
 }
 
 export default function Home() {
   const navigation = useNavigation()
-  const { balance } = useRoute().params as IParams
+  const { list } = useRoute().params as IParams
+  const [balance, setBalance] = useState(0)
 
   const currencySymbols = {
     BRL: 'R$'
@@ -29,6 +32,10 @@ export default function Home() {
   
     return `${currency} ${stringified}`
   }
+
+  useEffect(() => {
+    list.map(plate => setBalance(balance+plate.price))
+  }, [])
   
   return (
     <ContainerPd>
@@ -40,7 +47,7 @@ export default function Home() {
       <Title>Modelo Para Restaurante</Title>
       <Balance>Total {toFormatSafe(dinero({ amount: balance, currency: 'BRL' }))}</Balance>
       <Foods>
-        {plates.map((plate, index) => <Plate balance={balance} plate={plate} key={index}/>)}
+        {plates.map((plate, index) => <Plate list={list} plate={plate} key={index}/>)}
       </Foods>
     </ContainerPd>
   )
