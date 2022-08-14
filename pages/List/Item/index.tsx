@@ -6,6 +6,7 @@ import dinero from 'dinero.js'
 import toFormatSafe from '../../../utils/toFormatSafe'
 import useList from '../../../listContext'
 import { useTheme } from 'styled-components'
+import Toast from 'react-native-toast-message'
 
 interface Iprops {
     item: IItemList
@@ -38,6 +39,10 @@ const Item: FC<Iprops> = ({ item, onMutate }) => {
                     if (quantity > 1) {
                         setQuantity(quantity-1)
                     } else {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Prato removido com sucesso'
+                        })
                         removeItem(item._id)
                     }
                 }}>

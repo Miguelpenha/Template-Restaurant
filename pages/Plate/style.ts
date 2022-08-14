@@ -3,7 +3,7 @@ import ButtonBackNotStyled from '../../components/ButtonBack'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const ButtonBack = styled(ButtonBackNotStyled)`
-    top: 5%;
+    top: 8%;
     left: 1%;
     z-index: 2;
     position: absolute;

@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react'
 import dinero from 'dinero.js'
 import useList from '../../listContext'
 import toFormatSafe from '../../utils/toFormatSafe'
-import { ScrollView } from 'react-native-gesture-handler'
+import { MaterialIcons } from '@expo/vector-icons'
+import Toast from 'react-native-toast-message'
 
 interface IParams {
   plate: IPlate
@@ -16,7 +17,7 @@ interface IParams {
 export default function Plate() {
   const navigation = useNavigation()
   const { plate } = useRoute().params as IParams
-  const { list, setList, getItem, setItem: setItemOnList } = useList()
+  const { list, setList, getItem, setItem: setItemOnList, removeItem } = useList()
   const [note, setNote] = useState('')
   const [item, setItem] = useState<IItemList>()
   const [quantity, setQuantity] = useState(1)
@@ -36,7 +37,8 @@ export default function Plate() {
         totalPriceConverted: plate.priceConverted
       })
     }
-
+    
+    item && setNote(item.note)
     item && setQuantity(item.quantity)
   }, [])
   
@@ -56,8 +58,21 @@ export default function Plate() {
           <Note maxLength={160} multiline autoCapitalize="sentences" autoCompleteType="username" defaultValue={note} onChangeText={setNote} autoCorrect selectionColor={theme.primary} placeholder="Observação..." placeholderTextColor={theme.secondaryColor}/>
           <ContainerCountAndButton>
             <ContainerCount>
-              <ContainerCountIconLeft onPress={() => quantity > 1 && setQuantity(quantity-1)}>
-                <CountIcon>-</CountIcon>
+              <ContainerCountIconLeft onPress={() => {
+                if (quantity > 1) {
+                  setQuantity(quantity-1)
+                } else if (item.onList) {
+                  removeItem(item._id)
+                  Toast.show({
+                    type: 'error',
+                    text1: 'Prato removido com sucesso'
+                  })
+                  navigation.navigate('Home')
+                }
+              }}>
+                <CountIcon>
+                  {quantity === 1 && item.onList ? <MaterialIcons name="delete" size={20}/> : '-'}
+                </CountIcon>
               </ContainerCountIconLeft>
               <Count>{quantity}</Count>
               <ContainerCountIconRight onPress={() => setQuantity(quantity+1)}>
@@ -66,6 +81,10 @@ export default function Plate() {
             </ContainerCount>
             <ButtonSubmit onPress={() => {
               if (!item.onList) {
+                Toast.show({
+                  type: 'success',
+                  text1: 'Prato adicionado com sucesso!'
+                })
                 setList([...list, {
                   ...item,
                   quantity,
@@ -75,6 +94,10 @@ export default function Plate() {
                   onList: true
                 }])
               } else {
+                Toast.show({
+                  type: 'info',
+                  text1: 'Prato editado com sucesso'
+                })
                 setItemOnList({
                   ...item,
                   quantity,
