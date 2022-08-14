@@ -1,4 +1,4 @@
-import { IPlate } from '../../types'
+import { IPlate } from '../../../types'
 import { FC } from 'react'
 import { useTheme } from 'styled-components'
 import { useNavigation } from '@react-navigation/native'
@@ -6,15 +6,14 @@ import { Container, Informations, Name, Description, PeoplesCount, Price, Photo 
 
 interface Iprops {
     plate: IPlate
-    list: IPlate[]
 }
 
-const Plate: FC<Iprops> = ({ plate, list }) => {
+const Plate: FC<Iprops> = ({ plate }) => {
     const theme = useTheme()
     const navigation = useNavigation()
     
     return (
-        <Container onPress={() => navigation.navigate('Plate', { plate, list })} style={{ shadowColor: theme.secondary }}>
+        <Container onPress={() => navigation.navigate('Plate', { plate })} style={{ shadowColor: theme.secondary }}>
             <Informations>
                 <Name>{plate.name}</Name>
                 {plate.description && (
@@ -23,7 +22,7 @@ const Plate: FC<Iprops> = ({ plate, list }) => {
                 <PeoplesCount>Serve {plate.peoplesCount} {plate.peoplesCount <= 1 ? 'pessoa' : 'pessoas'}</PeoplesCount>
                 <Price>{plate.priceConverted}</Price>
             </Informations>
-            <Photo source={{
+            <Photo resizeMode="center" source={{
                 uri: plate.image
             }}/>
         </Container>

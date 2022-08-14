@@ -3,14 +3,20 @@ import ButtonBackNotStyled from '../../components/ButtonBack'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const ButtonBack = styled(ButtonBackNotStyled)`
-    top: 4%;
+    top: 5%;
     left: 1%;
     z-index: 2;
     position: absolute;
 `
 
+export const Main = styled.ScrollView`
+    
+`
+
 export const Photo = styled.Image`
+    width: 100%;
     aspect-ratio: 1;
+    align-self: center;
 `
 
 export const Name = styled.Text`
@@ -73,7 +79,7 @@ export const Note = styled.TextInput`
 export const ContainerCountAndButton = styled.View`
     width: 85%;
     margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 15%;
     align-self: center;
     flex-direction: row;
 `
@@ -120,5 +126,6 @@ export const ButtonSubmit = styled.TouchableOpacity`
 
 export const TextButtonSubmit = styled.Text`
     margin: auto;
+    text-align: center;
     font-size: ${RFPercentage(3)}px;
 `

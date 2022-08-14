@@ -16,14 +16,12 @@ export enum ThemeNameType {
 export type IthemeType = keyof typeof ThemeNameType
 
 export type Inavigation = {
-  Home: {
-    list: IPlate[]
-  }
+  Home: undefined
   Settings: undefined
   Plate: {
-    plate: IPlate
-    list: IPlate[]
+    plate: IPlate 
   }
+  List: undefined
 }
 
 export interface IPlate {
@@ -35,4 +33,12 @@ export interface IPlate {
   description: string
   peoplesCount: number
   priceConverted: string
+}
+
+export interface IItemList extends IPlate {
+  note: string
+  onList?: boolean
+  quantity: number
+  totalPrice: number
+  totalPriceConverted: string
 }

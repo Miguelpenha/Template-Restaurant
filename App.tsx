@@ -3,6 +3,7 @@ import updateApp from './utils/updateApp'
 import AppLoading from 'expo-app-loading'
 import { green } from './utils/colorsLogs'
 import { ThemeProvider } from './theme'
+import { ListProvider } from './listContext'
 import Routes from './routes'
 
 function App() {
@@ -20,7 +21,9 @@ function App() {
 
     return (
       <ThemeProvider>
-        <Routes/>
+        <ListProvider>
+          <Routes/>
+        </ListProvider>
       </ThemeProvider>
     )
   }

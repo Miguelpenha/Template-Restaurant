@@ -8,11 +8,20 @@ export const Header = styled.View`
 `
 
 export const ContainerSettings = styled.TouchableOpacity`
-    margin-left: 2%;
+    margin-left: 4%;
     margin-right: auto;
 `
 
 export const Settings = styled(MaterialIcons)`
+    color: ${props => props.theme.primary};
+`
+
+export const ContainerList = styled.TouchableOpacity`
+    margin-right: 4%;
+    margin-left: auto;
+`
+
+export const List = styled(MaterialIcons)`
     color: ${props => props.theme.primary};
 `
 
@@ -34,5 +43,5 @@ export const Balance = styled.Text`
 
 export const Foods = styled.View`
     margin-top: 8%;
-    margin-bottom: 35%;
+    margin-bottom: 50%;
 `
