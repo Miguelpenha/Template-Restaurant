@@ -18,7 +18,7 @@ function Settings() {
     const [checkUpdating, setCheckUpdating] = useState(false)
     
     return (
-        <ContainerPd>
+        <ContainerPd scroll={false}>
             <HeaderBack onClick={() => navigation.goBack()} title="Configurações"/>
             <ScrollView>
                 <ContainerSwitch>

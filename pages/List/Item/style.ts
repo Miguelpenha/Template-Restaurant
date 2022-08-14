@@ -37,6 +37,7 @@ export const Note = styled.Text`
 `
 
 export const Price = styled.Text`
+    margin-top: auto;
     font-weight: bold;
     font-size: ${RFPercentage(2.8)}px;
     color: ${props => props.theme.primary};
