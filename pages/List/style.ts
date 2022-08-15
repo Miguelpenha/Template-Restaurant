@@ -1,7 +1,7 @@
-import { MaterialIcons } from '@expo/vector-icons'
-import { RFPercentage } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 import ButtonBackNotStyled from '../../components/ButtonBack'
+import { MaterialIcons } from '@expo/vector-icons'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const ButtonBack = styled(ButtonBackNotStyled)`
     top: 8%;
@@ -41,6 +41,19 @@ export const InputFind = styled.TextInput`
     color: ${props => props.theme.primary};
     border: 1px solid ${props => props.theme.primary};
     background-color: ${props => props.theme.backgroundColor};
+`
+
+export const NotFoundFindMessage = styled.Text`
+    padding: 3% 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+    align-self: center;
+    line-height: ${RFPercentage(4)}px;
+    font-size: ${RFPercentage(2.5)}px;
+    border-radius: ${RFPercentage(2)}px;
+    color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.backgroundColorSecondary};
 `
 
 export const Items = styled.FlatList`

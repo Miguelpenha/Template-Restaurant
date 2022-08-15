@@ -1,19 +1,28 @@
-import { Dispatch, SetStateAction, FC } from 'react'
+import { IItemList, IPlate } from '../../../types'
+import { Dispatch, SetStateAction, FC, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Menu, ContainerSettings, Settings, ContainerList, List, Title, Balance, InputFind } from './style'
+import { useTheme } from 'styled-components'
+import { Menu, ContainerSettings, Settings, ContainerList, List, Title, Balance, InputFind, NotFoundMessage } from './style'
 import toFormatSafe from '../../../utils/toFormatSafe'
 import dinero from 'dinero.js'
-import { useTheme } from 'styled-components'
 
 interface Iprops {
     find: string
     balance: number
+    plates: IPlate[]
     setFind: Dispatch<SetStateAction<string>>
 }
 
-const Header: FC<Iprops> = ({ balance, find, setFind }) => {
+const Header: FC<Iprops> = ({ balance, find, plates, setFind }) => {
     const navigation = useNavigation()
     const theme = useTheme()
+    let exists = false
+
+    plates.map(plate => {
+        if (plate.name.toUpperCase().includes(find.toUpperCase())) {
+            exists = true
+        }
+    })
 
     return (
         <>
@@ -27,7 +36,16 @@ const Header: FC<Iprops> = ({ balance, find, setFind }) => {
             </Menu>
             <Title>Modelo Para Restaurante</Title>
             <Balance>Total {toFormatSafe(dinero({ amount: balance, currency: 'BRL' }))}</Balance>
-            <InputFind style={{ shadowColor: theme.primary }} autoCapitalize="sentences" autoCompleteType="username" defaultValue={find} onChangeText={setFind} autoCorrect selectionColor={theme.secondary} placeholder="Pesquisar..." placeholderTextColor={theme.secondaryColor}/>
+            <InputFind
+                autoCorrect
+                defaultValue={find}
+                onChangeText={setFind}
+                placeholder="Pesquisar..."
+                selectionColor={theme.secondary}
+                style={{ shadowColor: theme.primary }}
+                placeholderTextColor={theme.secondaryColor}
+            />
+            {!exists && <NotFoundMessage>Sem resultados {':('}</NotFoundMessage>}
         </>
     )
 }

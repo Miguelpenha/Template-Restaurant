@@ -1,14 +1,15 @@
-import { IItemList, IPlate } from '../../types'
+import { IPlate, IItemList } from '../../types'
 import { useNavigation, useRoute } from '@react-navigation/native'
+import useList from '../../listContext'
+import { useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'
-import { ButtonBack, Main, Photo, Name, Description, PeoplesCount, Price, LabelNote, Note, ContainerCountAndButton, ContainerCount, ContainerCountIconLeft, ContainerCountIconRight, CountIcon, Count, ButtonSubmit, TextButtonSubmit } from './style'
-import { useEffect, useState } from 'react'
-import dinero from 'dinero.js'
-import useList from '../../listContext'
-import toFormatSafe from '../../utils/toFormatSafe'
-import { MaterialIcons } from '@expo/vector-icons'
+import { ButtonBack, Photo, Name, Description, PeoplesCount, Price, LabelNote, Note, ContainerCountAndButton, ContainerCount, ContainerCountIconLeft, ContainerCountIconRight, CountIcon, Count, ButtonSubmit, TextButtonSubmit } from './style'
+import { ScrollView } from 'react-native'
 import Toast from 'react-native-toast-message'
+import { MaterialIcons } from '@expo/vector-icons'
+import toFormatSafe from '../../utils/toFormatSafe'
+import dinero from 'dinero.js'
 
 interface IParams {
   plate: IPlate
@@ -17,7 +18,7 @@ interface IParams {
 export default function Plate() {
   const navigation = useNavigation()
   const { plate } = useRoute().params as IParams
-  const { list, setList, getItem, setItem: setItemOnList, removeItem } = useList()
+  const { getItem, list, setList, setItem: setItemOnList, removeItem } = useList()
   const [note, setNote] = useState('')
   const [item, setItem] = useState<IItemList>()
   const [quantity, setQuantity] = useState(1)
@@ -46,7 +47,7 @@ export default function Plate() {
     <ContainerPd scroll={false}>
       <ButtonBack iconSize={30} onClick={() => navigation.goBack()}/>
       {item && (
-        <Main>
+        <ScrollView>
           <Photo resizeMode="cover" source={{
             uri: item.image
           }}/>
@@ -112,7 +113,7 @@ export default function Plate() {
               <TextButtonSubmit>{!item.onList ? 'Adicionar' : 'Editar'}{'\n'}{toFormatSafe(dinero({ amount: quantity*item.price, currency: 'BRL' }))}</TextButtonSubmit>
             </ButtonSubmit>
           </ContainerCountAndButton>
-        </Main>
+        </ScrollView>
       )}
     </ContainerPd>
   )

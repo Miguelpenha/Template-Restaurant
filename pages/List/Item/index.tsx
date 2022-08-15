@@ -1,13 +1,13 @@
 import { IItemList } from '../../../types'
-import { FC, useCallback, useEffect, useState } from 'react'
-import { Container, Photo, Informations, Name, Note, Price, ContainerCount, ContainerCountIconLeft, ContainerCountIconRight, CountIcon, Count } from './style'
-import { MaterialIcons } from '@expo/vector-icons'
-import dinero from 'dinero.js'
-import toFormatSafe from '../../../utils/toFormatSafe'
+import { FC, useState, useCallback, useEffect } from 'react'
 import useList from '../../../listContext'
 import { useTheme } from 'styled-components'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
+import toFormatSafe from '../../../utils/toFormatSafe'
+import dinero from 'dinero.js'
+import { Container, Photo, Informations, Name, Note, Price, ContainerCount, ContainerCountIconLeft, ContainerCountIconRight, CountIcon, Count } from './style'
 import Toast from 'react-native-toast-message'
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { MaterialIcons } from '@expo/vector-icons'
 
 interface Iprops {
     item: IItemList

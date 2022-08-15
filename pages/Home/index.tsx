@@ -1,18 +1,17 @@
-import { useFocusEffect } from '@react-navigation/native'
-import { useState, useCallback } from 'react'
-import ContainerPd from '../../components/ContainerPd'
-import { Plates } from './style'
-import plates from './plates'
-import Plate from './Plate'
 import useList from '../../listContext'
-import { ListRenderItemInfo } from 'react-native'
+import { useState, useCallback } from 'react'
+import { useFocusEffect } from '@react-navigation/native'
+import ContainerPd from '../../components/ContainerPd'
+import { FlatList, ListRenderItemInfo } from 'react-native'
+import plates from './plates'
 import { IPlate } from '../../types'
 import Header from './Header'
+import Plate from './Plate'
 
 export default function Home() {
   const { list } = useList()
-  const [find, setFind] = useState('')
   const [balance, setBalance] = useState(0)
+  const [find, setFind] = useState('')
 
   function makeBalance() {
     setBalance(0)
@@ -24,12 +23,14 @@ export default function Home() {
   
   return (
     <ContainerPd scroll={false}>
-      <Plates
+      <FlatList
         data={plates}
         keyExtractor={(item: IPlate) => item._id}
-        contentContainerStyle={{paddingBottom: '10%'}}
-        ListHeaderComponent={<Header balance={balance} find={find} setFind={setFind}/>}
-        renderItem={({ item }: ListRenderItemInfo<IPlate>) => item.name.toUpperCase().includes(find.toUpperCase()) && <Plate plate={item}/>}
+        contentContainerStyle={{ paddingBottom: '10%' }}
+        ListHeaderComponent={<Header plates={plates} balance={balance} find={find} setFind={setFind}/>}
+        renderItem={({ item }: ListRenderItemInfo<IPlate>) => (
+          item.name.toUpperCase().includes(find.toUpperCase()) && <Plate plate={item}/>
+        )}
       />
     </ContainerPd>
   )

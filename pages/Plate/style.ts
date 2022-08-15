@@ -9,10 +9,6 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
     position: absolute;
 `
 
-export const Main = styled.ScrollView`
-    
-`
-
 export const Photo = styled.Image`
     width: 100%;
     aspect-ratio: 1;

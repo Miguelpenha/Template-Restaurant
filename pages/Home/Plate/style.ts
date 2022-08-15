@@ -12,10 +12,6 @@ export const Container = styled.TouchableOpacity`
     background-color: ${props => props.theme.backgroundColor};
 `
 
-export const Informations = styled.View`
-    
-`
-
 export const Name = styled.Text`
     width: 65%;
     margin-bottom: 1%;

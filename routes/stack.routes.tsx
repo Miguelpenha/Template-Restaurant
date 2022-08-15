@@ -15,9 +15,7 @@ function StackRouter() {
                 headerShown: false
             }}
         >
-            <Screen name="Home" initialParams={{
-                list: []
-            }} component={Home}/>
+            <Screen name="Home" component={Home}/>
             <Screen name="Settings" component={Settings}/>
             <Screen name="Plate" component={Plate}/>
             <Screen name="List" component={List}/>
