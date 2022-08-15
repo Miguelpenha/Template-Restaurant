@@ -30,6 +30,19 @@ export const TextNotFound = styled.Text`
     color: ${props => props.theme.primary};
 `
 
+export const InputFind = styled.TextInput`
+    width: 80%;
+    padding: 4%;
+    elevation: 10;
+    margin-top: 35%;
+    align-self: center;
+    font-size: ${RFPercentage(2.5)}px;
+    border-radius: ${RFPercentage(2)}px;
+    color: ${props => props.theme.primary};
+    border: 1px solid ${props => props.theme.primary};
+    background-color: ${props => props.theme.backgroundColor};
+`
+
 export const Items = styled.FlatList`
-    padding-top: 30%;
+    padding-top: 5%;
 `

@@ -4,8 +4,8 @@ export const Container = styled.TouchableOpacity`
     width: 90%;
     padding: 4%;
     elevation: 6;
-    height: 13.5%;
-    margin-top: 8%;
+    margin-top: 4%;
+    margin-bottom: 4%;
     align-self: center;
     flex-direction: row;
     border-radius: 10px;

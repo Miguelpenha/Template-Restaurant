@@ -1,16 +1,17 @@
-import { useNavigation, useFocusEffect } from '@react-navigation/native'
+import { useFocusEffect } from '@react-navigation/native'
 import { useState, useCallback } from 'react'
 import ContainerPd from '../../components/ContainerPd'
-import { Header, ContainerSettings, ContainerList, List, Settings, Title, Balance, Foods } from './style'
-import dinero from 'dinero.js'
+import { Plates } from './style'
 import plates from './plates'
 import Plate from './Plate'
 import useList from '../../listContext'
-import toFormatSafe from '../../utils/toFormatSafe'
+import { ListRenderItemInfo } from 'react-native'
+import { IPlate } from '../../types'
+import Header from './Header'
 
 export default function Home() {
-  const navigation = useNavigation()
   const { list } = useList()
+  const [find, setFind] = useState('')
   const [balance, setBalance] = useState(0)
 
   function makeBalance() {
@@ -22,20 +23,14 @@ export default function Home() {
   useFocusEffect(useCallback(() => makeBalance(), [list]))
   
   return (
-    <ContainerPd>
-      <Header>
-        <ContainerSettings onPress={() => navigation.navigate('Settings')}>
-          <Settings name="settings" size={40}/>
-        </ContainerSettings>
-        <ContainerList onPress={() => navigation.navigate('List')}>
-          <List name="shopping-cart" size={40}/>
-        </ContainerList>
-      </Header>
-      <Title>Modelo Para Restaurante</Title>
-      <Balance>Total {toFormatSafe(dinero({ amount: balance, currency: 'BRL' }))}</Balance>
-      <Foods>
-        {plates.map((plate, index) => <Plate plate={plate} key={index}/>)}
-      </Foods>
+    <ContainerPd scroll={false}>
+      <Plates
+        data={plates}
+        keyExtractor={(item: IPlate) => item._id}
+        contentContainerStyle={{paddingBottom: '10%'}}
+        ListHeaderComponent={<Header balance={balance} find={find} setFind={setFind}/>}
+        renderItem={({ item }: ListRenderItemInfo<IPlate>) => item.name.toUpperCase().includes(find.toUpperCase()) && <Plate plate={item}/>}
+      />
     </ContainerPd>
   )
 }
