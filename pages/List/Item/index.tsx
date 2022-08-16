@@ -34,7 +34,7 @@ const Item: FC<Iprops> = ({ item, onMutate }) => {
     return (
         <Container onPress={() => navigation.navigate('Plate', { plate: item })} style={{ shadowColor: theme.primary }}>
             <Photo source={{
-                uri: item.image
+                uri: item.photo.url
             }}/>
             <Informations>
                 <Name>{item.name}</Name>

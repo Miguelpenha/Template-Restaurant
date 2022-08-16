@@ -19,7 +19,7 @@ export default function List() {
   useFocusEffect(useCallback(() => setList(listOrigin), [listOrigin]))
 
   list.map(item => {
-    if (item.name.toUpperCase().includes(find.toUpperCase())) {
+    if (item.name.toUpperCase().includes(find.toUpperCase()) || item.description.toUpperCase().includes(find.toUpperCase())) {
       exists = true
     }
   })
@@ -48,7 +48,7 @@ export default function List() {
         data={list}
         contentContainerStyle={{paddingBottom: '40%'}}
         keyExtractor={(item: IItemList) => item._id}
-        renderItem={({ item }: ListRenderItemInfo<IItemList>) => item.name.toUpperCase().includes(find.toUpperCase()) && (
+        renderItem={({ item }: ListRenderItemInfo<IItemList>) => (item.name.toUpperCase().includes(find.toUpperCase()) || item.description.toUpperCase().includes(find.toUpperCase())) && (
           <Item onMutate={item => setItem(item)} item={item}/>
         )}
       />

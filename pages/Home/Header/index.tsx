@@ -19,7 +19,7 @@ const Header: FC<Iprops> = ({ balance, find, plates, setFind }) => {
     let exists = false
 
     plates.map(plate => {
-        if (plate.name.toUpperCase().includes(find.toUpperCase())) {
+        if (plate.name.toUpperCase().includes(find.toUpperCase()) || plate.description.toUpperCase().includes(find.toUpperCase())) {
             exists = true
         }
     })

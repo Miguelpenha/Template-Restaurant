@@ -49,7 +49,7 @@ export default function Plate() {
       {item && (
         <ScrollView>
           <Photo resizeMode="cover" source={{
-            uri: item.image
+            uri: item.photo.url
           }}/>
           <Name>{item.name}</Name>
           <Description>{item.description}</Description>

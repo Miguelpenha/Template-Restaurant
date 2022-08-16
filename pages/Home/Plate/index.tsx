@@ -24,7 +24,7 @@ const Plate: FC<Iprops> = ({ plate }) => {
                 <Price>{plate.priceConverted}</Price>
             </View>
             <Photo resizeMode="center" source={{
-                uri: plate.image
+                uri: plate.photo.url
             }}/>
         </Container>
     )

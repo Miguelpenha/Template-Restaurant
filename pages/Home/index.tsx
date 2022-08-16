@@ -1,17 +1,44 @@
 import useList from '../../listContext'
-import { useState, useCallback } from 'react'
-import { useFocusEffect } from '@react-navigation/native'
+import { useState, useCallback, useEffect } from 'react'
+import { useTheme } from 'styled-components'
+import { useFocusEffect} from '@react-navigation/native'
 import ContainerPd from '../../components/ContainerPd'
-import { FlatList, ListRenderItemInfo } from 'react-native'
-import plates from './plates'
+import { FlatList, ListRenderItemInfo, RefreshControl } from 'react-native'
 import { IPlate } from '../../types'
 import Header from './Header'
 import Plate from './Plate'
+import api from '../../api'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export default function Home() {
   const { list } = useList()
   const [balance, setBalance] = useState(0)
   const [find, setFind] = useState('')
+  const [plates, setPlates] = useState<IPlate[]>([])
+  const theme = useTheme()
+  const [refreshing, setRefreshing] = useState(false)
+
+  async function getPlates() {
+    const { data } = await api('/plates?photo=true')
+
+    setPlates(data)
+  }
+
+  useEffect(() => {
+    getPlates().then()
+  }, [])
+
+  useFocusEffect(() => {
+    getPlates().then()
+  })
+
+  async function onRefreshAction() {
+    setRefreshing(true)
+
+    await getPlates()
+
+    setRefreshing(false)
+  }
 
   function makeBalance() {
     setBalance(0)
@@ -29,7 +56,16 @@ export default function Home() {
         contentContainerStyle={{ paddingBottom: '10%' }}
         ListHeaderComponent={<Header plates={plates} balance={balance} find={find} setFind={setFind}/>}
         renderItem={({ item }: ListRenderItemInfo<IPlate>) => (
-          item.name.toUpperCase().includes(find.toUpperCase()) && <Plate plate={item}/>
+          (item.name.toUpperCase().includes(find.toUpperCase()) || item.description.toUpperCase().includes(find.toUpperCase())) && <Plate plate={item}/>
+        )}
+        refreshControl={(
+          <RefreshControl
+            refreshing={refreshing}
+            colors={[theme.primary]}
+            onRefresh={onRefreshAction}
+            progressViewOffset={RFPercentage(11.5)}
+            progressBackgroundColor={theme.secondary}
+          />
         )}
       />
     </ContainerPd>
