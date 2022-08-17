@@ -22,6 +22,9 @@ export type Inavigation = {
     plate: IPlate 
   }
   List: undefined
+  Photo: {
+    plate: IPlate
+  }
 }
 
 export interface IPlate {

@@ -4,12 +4,13 @@ import useList from '../../listContext'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'
-import { ButtonBack, Photo, Name, Description, PeoplesCount, Price, LabelNote, Note, ContainerCountAndButton, ContainerCount, ContainerCountIconLeft, ContainerCountIconRight, CountIcon, Count, ButtonSubmit, TextButtonSubmit } from './style'
+import { ButtonBack, IconZoom, Photo, Name, Description, PeoplesCount, Price, LabelNote, Note, ContainerCountAndButton, ContainerCount, ContainerCountIconLeft, ContainerCountIconRight, CountIcon, Count, ButtonSubmit, TextButtonSubmit } from './style'
 import { ScrollView } from 'react-native'
 import Toast from 'react-native-toast-message'
 import { MaterialIcons } from '@expo/vector-icons'
 import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
+import { TouchableOpacity } from 'react-native'
 
 interface IParams {
   plate: IPlate
@@ -48,9 +49,14 @@ export default function Plate() {
       <ButtonBack iconSize={30} onClick={() => navigation.goBack()}/>
       {item && (
         <ScrollView>
-          <Photo resizeMode="cover" source={{
-            uri: item.photo.url
-          }}/>
+          <TouchableOpacity onPress={() => navigation.navigate('Photo', {
+            plate: item
+          })}>
+            <IconZoom size={40} name="zoom-in"/>
+            <Photo resizeMode="cover" source={{
+              uri: item.photo.url
+            }}/>
+          </TouchableOpacity>
           <Name>{item.name}</Name>
           <Description>{item.description}</Description>
           <PeoplesCount>Serve {item.peoplesCount} {item.peoplesCount <= 1 ? 'pessoa' : 'pessoas'}</PeoplesCount>
