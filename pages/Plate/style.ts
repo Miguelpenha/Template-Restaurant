@@ -11,8 +11,8 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
 `
 
 export const IconZoom = styled(MaterialIcons)`
-    top: 11%;
-    right: 2%;
+    top: 13%;
+    right: 3.5%;
     z-index: 1;
     position: absolute;
     color: ${props => props.theme.secondaryColor};
