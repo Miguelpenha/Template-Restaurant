@@ -1,5 +1,4 @@
-import useList from '../../listContext'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useTheme } from 'styled-components'
 import { useFocusEffect} from '@react-navigation/native'
 import ContainerPd from '../../components/ContainerPd'
@@ -10,10 +9,9 @@ import Plate from './Plate'
 import { Loading } from './style'
 import api from '../../api'
 import { RFPercentage } from 'react-native-responsive-fontsize'
+import Footer from './Footer'
 
 export default function Home() {
-  const { list } = useList()
-  const [balance, setBalance] = useState(0)
   const [find, setFind] = useState('')
   const [plates, setPlates] = useState<IPlate[]>()
   const theme = useTheme()
@@ -29,9 +27,9 @@ export default function Home() {
     getPlates().then()
   }, [])
 
-  useFocusEffect(() => {
+  useFocusEffect(useCallback(() => {
     getPlates().then()
-  })
+  }, []))
 
   async function onRefreshAction() {
     setRefreshing(true)
@@ -40,14 +38,6 @@ export default function Home() {
 
     setRefreshing(false)
   }
-
-  function makeBalance() {
-    setBalance(0)
-
-    list.map(plate => setBalance(balance => plate.totalPrice+balance))
-  }
-
-  useFocusEffect(useCallback(() => makeBalance(), [list]))
   
   if (plates) {
     return (
@@ -55,8 +45,8 @@ export default function Home() {
         <FlatList
           data={plates}
           keyExtractor={(item: IPlate) => item._id}
-          contentContainerStyle={{ paddingBottom: '10%' }}
-          ListHeaderComponent={<Header plates={plates} balance={balance} find={find} setFind={setFind}/>}
+          contentContainerStyle={{ paddingBottom: '25%' }}
+          ListHeaderComponent={<Header plates={plates} find={find} setFind={setFind}/>}
           renderItem={({ item }: ListRenderItemInfo<IPlate>) => (
             (item.name.toUpperCase().includes(find.toUpperCase()) || item.description.toUpperCase().includes(find.toUpperCase())) && <Plate plate={item}/>
           )}
@@ -70,6 +60,7 @@ export default function Home() {
             />
           )}
         />
+        <Footer/>
       </ContainerPd>
     )
   } else {

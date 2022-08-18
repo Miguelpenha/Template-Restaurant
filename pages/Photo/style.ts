@@ -15,7 +15,7 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
 `
 
 export const Footer = styled.View`
-    padding: 2%;
+    padding: 4% 2%;
     background-color: rgba(0, 0, 0, 0.5);
     width: ${Dimensions.get('window').width}px;
 `

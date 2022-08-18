@@ -3,16 +3,20 @@ import ButtonBackNotStyled from '../../components/ButtonBack'
 import { MaterialIcons } from '@expo/vector-icons'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-export const ButtonBack = styled(ButtonBackNotStyled)`
-    top: 8%;
-    left: 2%;
+interface IButtonBack {
+    transitionModal: boolean
+}
+
+export const ButtonBack = styled(ButtonBackNotStyled)<IButtonBack>`
     z-index: 2;
     position: absolute;
+    top: ${props => props.transitionModal ? 7 : 8}%;
+    left: ${props => props.transitionModal ? -2 : 2}%;
 `
 
 export const ButtonDeleteAll = styled.TouchableOpacity`
-    top: 8%;
-    right: 2%;
+    top: 14%;
+    right: 3.5%;
     z-index: 2;
     position: absolute;
 `
@@ -30,11 +34,20 @@ export const TextNotFound = styled.Text`
     color: ${props => props.theme.primary};
 `
 
+export const Balance = styled.Text`
+    margin-top: 35%;
+    font-weight: bold;
+    align-self: center;
+    font-size: ${RFPercentage(3.8)}px;
+    color: ${props => props.theme.primary};
+`
+
 export const InputFind = styled.TextInput`
     width: 80%;
     padding: 4%;
     elevation: 10;
-    margin-top: 35%;
+    margin-top: 10%;
+    margin-bottom: 5%;
     align-self: center;
     font-size: ${RFPercentage(2.5)}px;
     border-radius: ${RFPercentage(2)}px;
@@ -58,4 +71,22 @@ export const NotFoundFindMessage = styled.Text`
 
 export const Items = styled.FlatList`
     padding-top: 5%;
+`
+
+export const ButtonConfirm = styled.TouchableOpacity`
+    width: 82%;
+    bottom: 4%;
+    padding: 4%;
+    elevation: 8;
+    align-self: center;
+    align-items: center;
+    position: absolute;
+    border-radius: ${RFPercentage(2)}px;
+    background-color: ${props => props.theme.backgroundColorSecondary};
+`
+
+export const TextButtonConfirm = styled.Text`
+    font-weight: bold;
+    font-size: ${RFPercentage(3.5)}px;
+    color: ${props => props.theme.primary};
 `

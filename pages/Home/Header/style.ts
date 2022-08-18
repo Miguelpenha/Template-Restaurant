@@ -33,19 +33,11 @@ export const Title = styled.Text`
     color: ${props => props.theme.primary};
 `
 
-export const Balance = styled.Text`
-    margin-top: 10%;
-    font-weight: bold;
-    margin-bottom: 8%;
-    align-self: center;
-    font-size: ${RFPercentage(3.8)}px;
-    color: ${props => props.theme.primary};
-`
-
 export const InputFind = styled.TextInput`
     width: 80%;
     padding: 4%;
     elevation: 10;
+    margin-top: 8%;
     margin-bottom: 4%;
     align-self: center;
     font-size: ${RFPercentage(2.5)}px;

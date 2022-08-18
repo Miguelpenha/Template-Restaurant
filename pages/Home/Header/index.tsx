@@ -1,19 +1,16 @@
-import { IItemList, IPlate } from '../../../types'
-import { Dispatch, SetStateAction, FC, useState, useEffect } from 'react'
+import { IPlate } from '../../../types'
+import { Dispatch, SetStateAction, FC } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
-import { Menu, ContainerSettings, Settings, ContainerList, List, Title, Balance, InputFind, NotFoundMessage } from './style'
-import toFormatSafe from '../../../utils/toFormatSafe'
-import dinero from 'dinero.js'
+import { Menu, ContainerSettings, Settings, ContainerList, List, Title, InputFind, NotFoundMessage } from './style'
 
 interface Iprops {
     find: string
-    balance: number
     plates: IPlate[]
     setFind: Dispatch<SetStateAction<string>>
 }
 
-const Header: FC<Iprops> = ({ balance, find, plates, setFind }) => {
+const Header: FC<Iprops> = ({ find, plates, setFind }) => {
     const navigation = useNavigation()
     const theme = useTheme()
     let exists = false
@@ -35,7 +32,6 @@ const Header: FC<Iprops> = ({ balance, find, plates, setFind }) => {
                 </ContainerList>
             </Menu>
             <Title>Modelo Para Restaurante</Title>
-            <Balance>Total {toFormatSafe(dinero({ amount: balance, currency: 'BRL' }))}</Balance>
             <InputFind
                 autoCorrect
                 defaultValue={find}

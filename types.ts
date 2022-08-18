@@ -21,9 +21,14 @@ export type Inavigation = {
   Plate: {
     plate: IPlate 
   }
-  List: undefined
+  List: {
+    transitionModal?: boolean
+  }
   Photo: {
     plate: IPlate
+  }
+  Confirmation: {
+    transitionModal?: boolean
   }
 }
 
