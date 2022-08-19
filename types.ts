@@ -44,13 +44,13 @@ export interface IPlate {
   name: string
   price: number
   photo: {
-      name: string
-      key: string
-      size: number
-      mimeType: string
-      url: string
-      width: number
-      height: number
+    name: string
+    key: string
+    size: number
+    mimeType: string
+    url: string
+    width: number
+    height: number
   }
   weight: number
   description: string
