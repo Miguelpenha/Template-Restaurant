@@ -30,6 +30,11 @@ export type Inavigation = {
   Confirmation: {
     transitionModal?: boolean
   }
+  Location: {
+    next?: keyof Inavigation
+    notBack?: boolean
+    back?: keyof Inavigation
+  }
 }
 
 export interface IPlate {
@@ -62,4 +67,18 @@ export interface IItemList extends IPlate {
   quantity: number
   totalPrice: number
   totalPriceConverted: string
+}
+
+export interface IRequest {
+  balance: number
+  list: IItemList[]
+  withdrawal: boolean
+}
+
+export interface ILocation {
+  city: string // Cidade
+  neighborhood: string // Bairro
+  street: string // Rua
+  complement: string // Complemento do endereço
+  number: string // Número da casa
 }

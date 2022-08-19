@@ -39,11 +39,11 @@ function Settings() {
                 </ContainerSwitch>
                 <Button onPress={async () => {
                     await AsyncStorage.removeItem('@templateRestaurant:theme')
-                    await AsyncStorage.removeItem('@templateRestaurant:favorites')
+                    await AsyncStorage.removeItem('@templateRestaurant:location')
 
                     console.log(yellow('>> All data has been deleted'))
                     console.log(red('   >> @templateRestaurant:theme'))
-                    console.log(red('   >> @templateRestaurant:favorites'))
+                    console.log(red('   >> @templateRestaurant:location'))
 
                     Toast.show({
                         type: 'error',
@@ -54,7 +54,13 @@ function Settings() {
 
                     navigation.reset({
                         index: 0,
-                        routes: [{ name: 'Home' }]
+                        routes: [{
+                            name: 'Location',
+                            params: {
+                                next: 'Home',
+                                notBack: true
+                            }
+                        }]
                     })
                 }}>
                     <IconButton name="delete" size={30}/>

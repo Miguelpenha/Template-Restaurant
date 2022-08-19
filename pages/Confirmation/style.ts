@@ -14,7 +14,7 @@ export const ButtonBack = styled(ButtonBackNotStyled)<IButtonBack>`
 `
 
 export const Title = styled.Text`
-    margin-top: 30%;
+    margin-top: 20%;
     font-weight: bold;
     align-self: center;
     font-size: ${RFPercentage(5)}px;
@@ -25,9 +25,26 @@ export const Balance = styled.Text`
     margin-top: 10%;
     font-weight: bold;
     align-self: center;
-    margin-bottom: 142%;
     font-size: ${RFPercentage(3.8)}px;
     color: ${props => props.theme.primary};
+`
+
+export const ContainerSwitchWithdrawal = styled.View`
+    margin-top: 8%;
+    align-self: center;
+    flex-direction: row;
+    margin-bottom: 142%;
+`
+
+export const TextSwitchWithdrawal = styled.Text`
+    align-self: center;
+    font-size: ${RFPercentage(3)}px;
+    color: ${props => props.theme.primary};
+`
+
+export const SwitchWithdrawal = styled.Switch`
+    margin-left: 4%;
+    margin-right: auto;
 `
 
 export const ButtonSubmit = styled.TouchableOpacity`

@@ -3,25 +3,13 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const Menu = styled.View`
+    padding: 0% 4%;
     margin-top: 14%;
     flex-direction: row;
+    justify-content: space-between;
 `
 
-export const ContainerSettings = styled.TouchableOpacity`
-    margin-left: 4%;
-    margin-right: auto;
-`
-
-export const Settings = styled(MaterialIcons)`
-    color: ${props => props.theme.primary};
-`
-
-export const ContainerList = styled.TouchableOpacity`
-    margin-right: 4%;
-    margin-left: auto;
-`
-
-export const List = styled(MaterialIcons)`
+export const IconMenu = styled(MaterialIcons)`
     color: ${props => props.theme.primary};
 `
 

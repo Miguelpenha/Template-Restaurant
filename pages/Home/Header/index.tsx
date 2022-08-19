@@ -2,7 +2,8 @@ import { IPlate } from '../../../types'
 import { Dispatch, SetStateAction, FC } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
-import { Menu, ContainerSettings, Settings, ContainerList, List, Title, InputFind, NotFoundMessage } from './style'
+import { Menu, IconMenu, Title, InputFind, NotFoundMessage } from './style'
+import { TouchableOpacity } from 'react-native'
 
 interface Iprops {
     find: string
@@ -24,12 +25,18 @@ const Header: FC<Iprops> = ({ find, plates, setFind }) => {
     return (
         <>
             <Menu>
-                <ContainerSettings onPress={() => navigation.navigate('Settings')}>
-                    <Settings name="settings" size={40}/>
-                </ContainerSettings>
-                <ContainerList onPress={() => navigation.navigate('List')}>
-                    <List name="shopping-cart" size={40}/>
-                </ContainerList>
+                <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+                    <IconMenu name="settings" size={40}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Location', {
+                    back: 'Home',
+                    next: 'Home'
+                })}>
+                    <IconMenu name="location-on" size={40}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('List')}>
+                    <IconMenu name="shopping-cart" size={40}/>
+                </TouchableOpacity>
             </Menu>
             <Title>Modelo Para Restaurante</Title>
             <InputFind

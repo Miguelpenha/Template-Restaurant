@@ -19,7 +19,7 @@ export const Name = styled.Text`
 `
 
 export const Description = styled.Text`
-    width: 65%;
+    width: 70%;
     margin-bottom: 1%;
     color: ${props => props.theme.secondaryColor};
 `
@@ -29,11 +29,24 @@ export const PeoplesCount = styled.Text`
     color: ${props => props.theme.color};
 `
 
+export const ContainerPriceAndAdded = styled.View`
+    width: 72%;
+    margin-top: auto;
+    margin-bottom: 2%;
+    flex-direction: row;
+`
+
 export const Price = styled.Text`
+    font-weight: bold;
+    color: ${props => props.theme.color};
+`
+
+export const Added = styled.Text`
     margin-top: auto;
     font-weight: bold;
     margin-bottom: 2%;
-    color: ${props => props.theme.color};
+    margin-left: auto;
+    color: ${props => props.theme.primary};
 `
 
 export const Photo = styled.Image`
