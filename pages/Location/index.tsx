@@ -5,25 +5,23 @@ import { useEffect, useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
 import { ButtonBack, ContainerSettings, Settings, Title, Field, Label, Required, Input, ButtonSubmit, TextButtonSubmit } from './style'
 import { ScrollView } from 'react-native'
-import { Inavigation } from '../../types'
 import Toast from 'react-native-toast-message'
 
 interface IParams {
-    notBack?: boolean
-    next?: keyof Inavigation
+    initial?: boolean
 }
 
 function Location() {
-    const { notBack, next } = useRoute().params as IParams
+    const { initial } = useRoute().params as IParams
     const navigation = useNavigation()
     const theme = useTheme()
     const { location, setLocation } = useLocation()
-    
     const [city, setCity] = useState(location ? location.city : '')
     const [neighborhood, setNeighborhood] = useState(location ? location.neighborhood : '')
     const [street, setStreet] = useState(location ? location.street : '')
     const [complement, setComplement] = useState(location ? location.complement : '')
     const [number, setNumber] = useState(location ? location.number : '')
+
     useEffect(() => {
         setCity(location ? location.city : '')
         setNeighborhood(location ? location.neighborhood : '')
@@ -31,14 +29,12 @@ function Location() {
         setComplement(location ? location.complement : '')
         setNumber(location ? location.number : '')
     }, [location])
+
     return (
         <ContainerPd scroll={false}>
-            {!notBack && <ButtonBack iconSize={30} iconName="arrow-back-ios" onClick={() => {
-            navigation.goBack()
-            // navigation.navigate('Home')
-            }}/>}
+            {!initial && <ButtonBack iconSize={30} iconName="arrow-back-ios" onClick={() => navigation.goBack()}/>}
             <ScrollView>
-                {notBack && (
+                {initial && (
                     <ContainerSettings onPress={() => navigation.navigate('Settings')}>
                         <Settings size={30} name="settings"/>
                     </ContainerSettings>
@@ -64,7 +60,7 @@ function Location() {
                     <Label>Número da casa/apartamento <Required>*</Required></Label>
                     <Input autoCompleteType="cc-number" defaultValue={number} onChangeText={setNumber} autoCorrect selectionColor={theme.secondary} placeholder="Número da casa/apartamento..." placeholderTextColor={theme.secondaryColor}/>
                 </Field>
-                <ButtonSubmit activeOpacity={0.5} onPress={() => {                
+                <ButtonSubmit activeOpacity={0.5} onPress={() => {
                     if (city && neighborhood && street && complement && number) {
                         setLocation({
                             city,
@@ -74,7 +70,12 @@ function Location() {
                             street
                         })
                         
-                        navigation.goBack()
+                        !initial && navigation.goBack()
+
+                        !initial && Toast.show({
+                            type: 'success',
+                            text1: 'Localização editada com sucesso'
+                        })
                     } else {
                         Toast.show({
                             type: 'error',

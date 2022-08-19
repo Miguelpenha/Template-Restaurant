@@ -10,12 +10,14 @@ import checkUpdate from './checkUpdate'
 import Constants from 'expo-constants'
 import { blue, red, magenta, yellow } from '../../utils/colorsLogs'
 import Toast from 'react-native-toast-message'
+import useLocation from '../../locationContext'
 
 function Settings() {
     const navigation = useNavigation()
     const { theme, themeName, mutateTheme, loadTheme } = useTheme()
     const [dark, setDark] = useState(themeName==='light' ? false : true)
     const [checkUpdating, setCheckUpdating] = useState(false)
+    const { loadLocation } = useLocation()
     
     return (
         <ContainerPd scroll={false}>
@@ -37,30 +39,28 @@ function Settings() {
                         }}
                     />
                 </ContainerSwitch>
-                <Button onPress={async () => {
-                    await AsyncStorage.removeItem('@templateRestaurant:theme')
-                    await AsyncStorage.removeItem('@templateRestaurant:location')
+                <Button onPress={() => {
+                    AsyncStorage.removeItem('@templateRestaurant:theme').then(() => {
+                        AsyncStorage.removeItem('@templateRestaurant:location').then(async () => {
+                            console.log(yellow('>> All data has been deleted'))
+                            console.log(red('   >> @templateRestaurant:theme'))
+                            console.log(red('   >> @templateRestaurant:location'))
 
-                    console.log(yellow('>> All data has been deleted'))
-                    console.log(red('   >> @templateRestaurant:theme'))
-                    console.log(red('   >> @templateRestaurant:location'))
+                            Toast.show({
+                                type: 'error',
+                                text1: 'Dados Apagados'
+                            })
 
-                    Toast.show({
-                        type: 'error',
-                        text1: 'Dados Apagados'
-                    })
-                    
-                    await loadTheme()
-
-                    navigation.reset({
-                        index: 0,
-                        routes: [{
-                            name: 'Location',
-                            params: {
-                                next: 'Home',
-                                notBack: true
-                            }
-                        }]
+                            await loadLocation()
+                            await loadTheme()
+                            
+                            navigation.reset({
+                                index: 0,
+                                routes: [{
+                                    name: 'LocationInitial'
+                                }]
+                            })
+                        })
                     })
                 }}>
                     <IconButton name="delete" size={30}/>

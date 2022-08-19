@@ -54,7 +54,6 @@ export const Input = styled.TextInput`
     color: ${props => props.theme.primary};
     border: 1px solid ${props => props.theme.primary};
 `
-
 export const ButtonSubmit = styled.TouchableOpacity`
     width: 82%;
     padding: 4%;

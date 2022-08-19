@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 interface ILocationContext {
     location: ILocation
+    loadLocation: () => Promise<void>
     setLocation: Dispatch<SetStateAction<ILocation>>
 }
 
@@ -17,13 +18,15 @@ export const LocationProvider: FC = ({ children }) => {
         
         if (location) {
             setLocation(location)
+        } else {
+            setLocation(null)
         }
     }
 
     async function setLocationOnStorage(location: ILocation) {
-        setLocation(location)
-
         AsyncStorage.setItem('@templateRestaurant:location', JSON.stringify(location))
+
+        setLocation(location)
     }
 
     useEffect(() => {
@@ -31,7 +34,7 @@ export const LocationProvider: FC = ({ children }) => {
     }, [])
     
     return (
-        <LocationContext.Provider value={{location, setLocation: setLocationOnStorage}}>
+        <LocationContext.Provider value={{location, setLocation: setLocationOnStorage, loadLocation}}>
            {children}
         </LocationContext.Provider>
     )

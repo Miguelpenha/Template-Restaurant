@@ -31,10 +31,12 @@ export type Inavigation = {
     transitionModal?: boolean
   }
   Location: {
-    next?: keyof Inavigation
-    notBack?: boolean
-    back?: keyof Inavigation
+    initial?: boolean
   }
+  LocationInitial: {
+    initial?: boolean
+  }
+  Login: undefined
 }
 
 export interface IPlate {

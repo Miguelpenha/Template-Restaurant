@@ -30,7 +30,8 @@ const Header: FC<Iprops> = ({ find, plates, setFind }) => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Location', {
                     back: 'Home',
-                    next: 'Home'
+                    next: 'Home',
+                    notBack: false
                 })}>
                     <IconMenu name="location-on" size={40}/>
                 </TouchableOpacity>
