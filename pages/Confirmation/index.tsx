@@ -5,7 +5,7 @@ import useList from '../../listContext'
 import { ButtonBack, Title, Balance, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, ButtonSubmit, TextButtonSubmit } from './style'
 import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
-import { IRequest } from '../../types'
+import { IOrder } from '../../types'
 import { useTheme } from 'styled-components'
 import { ScrollView } from 'react-native'
 
@@ -18,7 +18,7 @@ function Confirmation() {
     const navigation = useNavigation()
     const [balance, setBalance] = useState(0)
     const { list } = useList()
-    const [request, setRequest] = useState<IRequest>()
+    const [order, setOrder] = useState<IOrder>()
     const theme = useTheme()
     const [withdrawal, setWithdrawal] = useState(false)
 
@@ -31,7 +31,7 @@ function Confirmation() {
     useFocusEffect(useCallback(() => {
         makeBalance()
 
-        setRequest(request => ({...request, balance, withdrawal, list}))
+        setOrder(order => ({...order, balance, withdrawal, list}))
     }, [list, withdrawal]))
 
     return (
@@ -49,9 +49,7 @@ function Confirmation() {
                         trackColor={{false: theme.secondary, true: theme.primary}}
                     />
                 </ContainerSwitchWithdrawal>
-                <ButtonSubmit activeOpacity={0.5} onPress={() => {
-                    console.log(request)
-                }}>
+                <ButtonSubmit activeOpacity={0.5} onPress={() => console.log(order)}>
                     <TextButtonSubmit>Confirmar</TextButtonSubmit>
                 </ButtonSubmit>
             </ScrollView>

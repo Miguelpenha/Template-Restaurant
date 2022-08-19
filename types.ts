@@ -71,7 +71,7 @@ export interface IItemList extends IPlate {
   totalPriceConverted: string
 }
 
-export interface IRequest {
+export interface IOrder {
   balance: number
   list: IItemList[]
   withdrawal: boolean
