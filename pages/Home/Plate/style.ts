@@ -1,3 +1,4 @@
+import { RFPercentage } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 export const Container = styled.TouchableOpacity`
@@ -21,11 +22,13 @@ export const Name = styled.Text`
 export const Description = styled.Text`
     width: 70%;
     margin-bottom: 1%;
+    font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.secondaryColor};
 `
 
 export const PeoplesCount = styled.Text`
     font-weight: bold;
+    font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.color};
 `
 
@@ -38,14 +41,15 @@ export const ContainerPriceAndAdded = styled.View`
 
 export const Price = styled.Text`
     font-weight: bold;
+    font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.color};
 `
 
 export const Added = styled.Text`
     margin-top: auto;
     font-weight: bold;
-    margin-bottom: 2%;
     margin-left: auto;
+    font-size: ${RFPercentage(2.2)}px;
     color: ${props => props.theme.primary};
 `
 
