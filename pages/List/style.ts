@@ -90,3 +90,7 @@ export const TextButtonConfirm = styled.Text`
     font-size: ${RFPercentage(3.5)}px;
     color: ${props => props.theme.primary};
 `
+
+export const Loading = styled.ActivityIndicator`
+    margin: auto;
+`

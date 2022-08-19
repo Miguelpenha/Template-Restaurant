@@ -7,6 +7,7 @@ import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
 import { IRequest } from '../../types'
 import { useTheme } from 'styled-components'
+import { ScrollView } from 'react-native'
 
 interface IParams {
     transitionModal: boolean
@@ -34,24 +35,26 @@ function Confirmation() {
     }, [list, withdrawal]))
 
     return (
-        <ContainerPd>
+        <ContainerPd scroll={false}>
             <ButtonBack transitionModal={transitionModal} iconSize={transitionModal ? 50 : 30} iconName={transitionModal ? 'expand-less' : 'arrow-back-ios'} onClick={() => navigation.goBack()}/>
-            <Title>Confirmação</Title>
-            <Balance>Total {toFormatSafe(dinero({ amount: balance, currency: 'BRL' }))}</Balance>
-            <ContainerSwitchWithdrawal>
-                <TextSwitchWithdrawal>Retirada no Local</TextSwitchWithdrawal>
-                <SwitchWithdrawal
-                    value={withdrawal}
-                    thumbColor={theme.primary}
-                    onChange={() => setWithdrawal(!withdrawal)}
-                    trackColor={{false: theme.secondary, true: theme.primary}}
-                />
-            </ContainerSwitchWithdrawal>
-            <ButtonSubmit activeOpacity={0.5} onPress={() => {
-                console.log(request)
-            }}>
-                <TextButtonSubmit>Confirmar</TextButtonSubmit>
-            </ButtonSubmit>
+            <ScrollView>
+                <Title>Confirmação</Title>
+                <Balance>Total {toFormatSafe(dinero({ amount: balance, currency: 'BRL' }))}</Balance>
+                <ContainerSwitchWithdrawal>
+                    <TextSwitchWithdrawal>Retirada no Local</TextSwitchWithdrawal>
+                    <SwitchWithdrawal
+                        value={withdrawal}
+                        thumbColor={theme.primary}
+                        onChange={() => setWithdrawal(!withdrawal)}
+                        trackColor={{false: theme.secondary, true: theme.primary}}
+                    />
+                </ContainerSwitchWithdrawal>
+                <ButtonSubmit activeOpacity={0.5} onPress={() => {
+                    console.log(request)
+                }}>
+                    <TextButtonSubmit>Confirmar</TextButtonSubmit>
+                </ButtonSubmit>
+            </ScrollView>
         </ContainerPd>
     )
 }

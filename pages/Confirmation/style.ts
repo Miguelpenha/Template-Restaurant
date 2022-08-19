@@ -49,7 +49,7 @@ export const SwitchWithdrawal = styled.Switch`
 
 export const ButtonSubmit = styled.TouchableOpacity`
     width: 82%;
-    bottom: 4%;
+    bottom: 8%;
     padding: 4%;
     elevation: 8;
     position: absolute;
