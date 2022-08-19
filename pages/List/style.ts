@@ -78,9 +78,9 @@ export const ButtonConfirm = styled.TouchableOpacity`
     bottom: 4%;
     padding: 4%;
     elevation: 8;
+    position: absolute;
     align-self: center;
     align-items: center;
-    position: absolute;
     border-radius: ${RFPercentage(2)}px;
     background-color: ${props => props.theme.backgroundColorSecondary};
 `
