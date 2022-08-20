@@ -13,6 +13,18 @@ export const IconMenu = styled(MaterialIcons)`
     color: ${props => props.theme.primary};
 `
 
+export const Quantity = styled.Text`
+    top: -5%;
+    width: 50%;
+    right: -10%;
+    padding: 5%;
+    text-align: center;
+    position: absolute;
+    border-radius: 50px;
+    color: ${props => props.theme.color};
+    background-color: ${props => props.theme.secondary};
+`
+
 export const Title = styled.Text`
     margin-top: 10%;
     font-weight: bold;

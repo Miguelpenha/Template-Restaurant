@@ -28,7 +28,7 @@ export const Description = styled.Text`
 
 export const PeoplesCount = styled.Text`
     font-weight: bold;
-    font-size: ${RFPercentage(2.5)}px;
+    font-size: ${RFPercentage(2.2)}px;
     color: ${props => props.theme.color};
 `
 
@@ -41,15 +41,15 @@ export const ContainerPriceAndAdded = styled.View`
 
 export const Price = styled.Text`
     font-weight: bold;
-    font-size: ${RFPercentage(2.5)}px;
+    font-size: ${RFPercentage(2.2)}px;
     color: ${props => props.theme.color};
 `
 
 export const Added = styled.Text`
+    margin-left: 8%;
     margin-top: auto;
     font-weight: bold;
-    margin-left: auto;
-    font-size: ${RFPercentage(2.2)}px;
+    font-size: ${RFPercentage(2)}px;
     color: ${props => props.theme.primary};
 `
 
