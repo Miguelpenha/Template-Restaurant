@@ -1,4 +1,4 @@
-import { ILocation } from './types'
+import { ILocation } from '../types'
 import { Dispatch, SetStateAction, createContext, FC, useState, useContext, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 

@@ -7,6 +7,7 @@ import Photo from '../pages/Photo'
 import Confirmation from '../pages/Confirmation'
 import Location from '../pages/Location'
 import Settings from '../pages/Settings'
+import Orders from '../pages/Orders'
 
 function AppStack() {
   const { Navigator, Screen } = createStackNavigator<Inavigation>()
@@ -24,6 +25,7 @@ function AppStack() {
       })}/>
       <Screen name="Location" component={Location} initialParams={{ initial: false }}/>
       <Screen name="Settings" component={Settings}/>
+      <Screen name="Orders" component={Orders}/>
     </Navigator>
   )
 }

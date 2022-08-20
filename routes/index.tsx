@@ -6,7 +6,7 @@ import AppStack from './AppStack'
 import InitialStack from './InitialStack'
 import Toast from 'react-native-toast-message'
 import toastConfig from '../toastConfig'
-import useLocation from '../locationContext'
+import useLocation from '../contexts/locationContext'
 
 function Routes() {
   const { name } = useTheme()

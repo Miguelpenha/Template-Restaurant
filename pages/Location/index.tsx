@@ -1,6 +1,6 @@
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
-import useLocation from '../../locationContext'
+import useLocation from '../../contexts/locationContext'
 import { useEffect, useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
 import { ButtonBack, ContainerSettings, Settings, Title, Field, Label, Required, Input, ButtonSubmit, TextButtonSubmit } from './style'

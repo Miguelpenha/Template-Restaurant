@@ -1,6 +1,6 @@
 import { IItemList } from '../../../types'
 import { FC, useState, useCallback, useEffect } from 'react'
-import useList from '../../../listContext'
+import useList from '../../../contexts/listContext'
 import { useTheme } from 'styled-components'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import toFormatSafe from '../../../utils/toFormatSafe'

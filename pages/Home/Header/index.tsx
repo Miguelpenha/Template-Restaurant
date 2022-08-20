@@ -1,10 +1,11 @@
 import { IPlate } from '../../../types'
-import { Dispatch, SetStateAction, FC } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { Dispatch, SetStateAction, FC, useState, useCallback } from 'react'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
 import { Menu, IconMenu, Quantity, Title, InputFind, NotFoundMessage } from './style'
 import { TouchableOpacity } from 'react-native'
-import useList from '../../../listContext'
+import useList from '../../../contexts/listContext'
+import useOrders from '../../../contexts/ordersContext'
 
 interface Iprops {
     find: string
@@ -16,7 +17,15 @@ const Header: FC<Iprops> = ({ find, plates, setFind }) => {
     const navigation = useNavigation()
     const theme = useTheme()
     const { list } = useList()
+    const [countOrdersOnHold, setCountOrdersOnHold] = useState<number>(0)
+    const { orders: ordersInUse } = useOrders()
     let exists = false
+
+    useFocusEffect(useCallback(() => {
+        setCountOrdersOnHold(0)
+        
+        ordersInUse && ordersInUse.map(orderInUse => !orderInUse.finished && setCountOrdersOnHold(count => count+1))
+    }, [ordersInUse]))
 
     plates.map(plate => {
         if (plate.name.toUpperCase().includes(find.toUpperCase()) || plate.description.toUpperCase().includes(find.toUpperCase())) {
@@ -32,6 +41,10 @@ const Header: FC<Iprops> = ({ find, plates, setFind }) => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Location')}>
                     <IconMenu name="location-on" size={40}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Orders')}>
+                    <IconMenu name="receipt" size={40}/>
+                    {ordersInUse && ordersInUse.length >= 1 && countOrdersOnHold >= 1 && <Quantity>{countOrdersOnHold}</Quantity>}
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('List')}>
                     <IconMenu name="shopping-cart" size={40}/>

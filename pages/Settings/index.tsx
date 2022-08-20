@@ -10,7 +10,8 @@ import checkUpdate from './checkUpdate'
 import Constants from 'expo-constants'
 import { blue, red, magenta, yellow } from '../../utils/colorsLogs'
 import Toast from 'react-native-toast-message'
-import useLocation from '../../locationContext'
+import useLocation from '../../contexts/locationContext'
+import useOrders from '../../contexts/ordersContext'
 
 function Settings() {
     const navigation = useNavigation()
@@ -18,6 +19,7 @@ function Settings() {
     const [dark, setDark] = useState(themeName==='light' ? false : true)
     const [checkUpdating, setCheckUpdating] = useState(false)
     const { loadLocation } = useLocation()
+    const { loadOrders } = useOrders()
     
     return (
         <ContainerPd scroll={false}>
@@ -42,23 +44,27 @@ function Settings() {
                 <Button onPress={() => {
                     AsyncStorage.removeItem('@templateRestaurant:theme').then(() => {
                         AsyncStorage.removeItem('@templateRestaurant:location').then(async () => {
-                            console.log(yellow('>> All data has been deleted'))
-                            console.log(red('   >> @templateRestaurant:theme'))
-                            console.log(red('   >> @templateRestaurant:location'))
+                            AsyncStorage.removeItem('@templateRestaurant:orders').then(async () => {
+                                console.log(yellow('>> All data has been deleted'))
+                                console.log(red('   >> @templateRestaurant:theme'))
+                                console.log(red('   >> @templateRestaurant:location'))
+                                console.log(red('   >> @templateRestaurant:orders'))
 
-                            Toast.show({
-                                type: 'error',
-                                text1: 'Dados Apagados'
-                            })
+                                Toast.show({
+                                    type: 'error',
+                                    text1: 'Dados Apagados'
+                                })
 
-                            await loadLocation()
-                            await loadTheme()
-                            
-                            navigation.reset({
-                                index: 0,
-                                routes: [{
-                                    name: 'LocationInitial'
-                                }]
+                                await loadLocation()
+                                await loadTheme()
+                                await loadOrders()
+                                
+                                navigation.reset({
+                                    index: 0,
+                                    routes: [{
+                                        name: 'LocationInitial'
+                                    }]
+                                })
                             })
                         })
                     })

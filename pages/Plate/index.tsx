@@ -1,6 +1,6 @@
 import { IPlate, IItemList } from '../../types'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import useList from '../../listContext'
+import useList from '../../contexts/listContext'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'

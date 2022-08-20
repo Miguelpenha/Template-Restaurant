@@ -1,5 +1,5 @@
 import { useNavigation, useFocusEffect, useRoute } from '@react-navigation/native'
-import useList from '../../listContext'
+import useList from '../../contexts/listContext'
 import { useState, useCallback } from 'react'
 import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'
@@ -52,7 +52,7 @@ export default function List() {
         {list && list.length < 1 && <TextNotFound>Ainda não há pratos {'\n'}no seu carrinho{'\n'}{':('}</TextNotFound>}
         <Items
           data={list}
-          ListHeaderComponent={() => <>
+          ListHeaderComponent={<>
             {list && list.length >= 1 && (
               <ButtonDeleteAll onPress={() => {
                 setListOrigin([])

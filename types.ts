@@ -37,6 +37,7 @@ export type Inavigation = {
     initial?: boolean
   }
   Login: undefined
+  Orders: undefined
 }
 
 export interface ICreated {
@@ -87,6 +88,7 @@ export interface IOrder {
   balance: number
   created: ICreated
   list: IItemList[]
+  finished?: boolean
   location: ILocation
   withdrawal: boolean
   balanceConverted: string

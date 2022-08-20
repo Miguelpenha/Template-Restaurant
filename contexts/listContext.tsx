@@ -1,4 +1,4 @@
-import { IItemList } from './types'
+import { IItemList } from '../types'
 import { Dispatch, SetStateAction, createContext, FC, useState, useContext } from 'react'
 
 interface IListContext {

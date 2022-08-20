@@ -1,6 +1,6 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { useCallback, useState } from 'react'
-import useList from '../../../listContext'
+import useList from '../../../contexts/listContext'
 import { Container, Icon, Text, Balance } from './style'
 import toFormatSafe from '../../../utils/toFormatSafe'
 import dinero from 'dinero.js'

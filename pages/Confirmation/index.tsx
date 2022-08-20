@@ -1,16 +1,17 @@
 import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/native'
 import { useCallback, useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
-import useList from '../../listContext'
+import useList from '../../contexts/listContext'
 import { ButtonBack, Title, Balance, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, LabelNote, Note, ButtonSubmit, TextButtonSubmit } from './style'
 import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
 import { IOrder } from '../../types'
 import { useTheme } from 'styled-components'
 import { ScrollView } from 'react-native'
-import useLocation from '../../locationContext'
+import useLocation from '../../contexts/locationContext'
 import api from '../../api'
 import Toast from 'react-native-toast-message'
+import useOrders from '../../contexts/ordersContext'
 
 interface IParams {
     transitionModal: boolean
@@ -26,6 +27,7 @@ function Confirmation() {
     const [withdrawal, setWithdrawal] = useState(false)
     const [note, setNote] = useState('')
     const { location } = useLocation()
+    const { addOrder } = useOrders()
 
     function makeBalance() {
         setBalance(0)
@@ -65,7 +67,9 @@ function Confirmation() {
                 <LabelNote>Alguma observação?</LabelNote>
                 <Note maxLength={160} multiline autoCapitalize="sentences" autoCompleteType="username" defaultValue={note} onChangeText={setNote} autoCorrect selectionColor={theme.primary} placeholder="Observação..." placeholderTextColor={theme.secondaryColor}/>
                 <ButtonSubmit activeOpacity={0.5} onPress={async () => {
-                    await api.post('/orders', order)
+                    const { data: { order: orderCreated } } = await api.post<{ order: IOrder }>('/orders', order)
+                    
+                    await addOrder(orderCreated)
 
                     navigation.navigate('Home')
 

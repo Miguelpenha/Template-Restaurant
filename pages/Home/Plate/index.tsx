@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
 import { Container, Name, Description, PeoplesCount, ContainerPriceAndAdded, Price, Added, Photo } from './style'
 import { View } from 'react-native'
-import useList from '../../../listContext'
+import useList from '../../../contexts/listContext'
 
 interface Iprops {
     plate: IPlate
