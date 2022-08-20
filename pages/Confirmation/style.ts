@@ -31,9 +31,8 @@ export const Balance = styled.Text`
 
 export const ContainerSwitchWithdrawal = styled.View`
     margin-top: 8%;
-    align-self: center;
+    margin-left: 6%;
     flex-direction: row;
-    margin-bottom: 142%;
 `
 
 export const TextSwitchWithdrawal = styled.Text`
@@ -45,6 +44,28 @@ export const TextSwitchWithdrawal = styled.Text`
 export const SwitchWithdrawal = styled.Switch`
     margin-left: 4%;
     margin-right: auto;
+`
+
+export const LabelNote = styled.Text`
+    width: 85%;
+    margin-top: 5%;
+    padding-top: 4%;
+    font-weight: bold;
+    align-self: center;
+    font-size: ${RFPercentage(3)}px;
+    color: ${props => props.theme.primary};
+`
+
+export const Note = styled.TextInput`
+    width: 85%;
+    padding: 4%;
+    margin-top: 5%;
+    align-self: center;
+    margin-bottom: 95%;
+    font-size: ${RFPercentage(3)}px;
+    border-radius: ${RFPercentage(2)}px;
+    color: ${props => props.theme.color};
+    border: 1px solid ${props => props.theme.color};
 `
 
 export const ButtonSubmit = styled.TouchableOpacity`

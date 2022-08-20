@@ -2,12 +2,15 @@ import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/nativ
 import { useCallback, useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
 import useList from '../../listContext'
-import { ButtonBack, Title, Balance, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, ButtonSubmit, TextButtonSubmit } from './style'
+import { ButtonBack, Title, Balance, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, LabelNote, Note, ButtonSubmit, TextButtonSubmit } from './style'
 import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
 import { IOrder } from '../../types'
 import { useTheme } from 'styled-components'
 import { ScrollView } from 'react-native'
+import useLocation from '../../locationContext'
+import api from '../../api'
+import Toast from 'react-native-toast-message'
 
 interface IParams {
     transitionModal: boolean
@@ -17,10 +20,12 @@ function Confirmation() {
     const { transitionModal } = useRoute().params as IParams
     const navigation = useNavigation()
     const [balance, setBalance] = useState(0)
-    const { list } = useList()
+    const { list, setList } = useList()
     const [order, setOrder] = useState<IOrder>()
     const theme = useTheme()
     const [withdrawal, setWithdrawal] = useState(false)
+    const [note, setNote] = useState('')
+    const { location } = useLocation()
 
     function makeBalance() {
         setBalance(0)
@@ -31,8 +36,16 @@ function Confirmation() {
     useFocusEffect(useCallback(() => {
         makeBalance()
 
-        setOrder(order => ({...order, balance, withdrawal, list}))
-    }, [list, withdrawal]))
+        setOrder(order => ({
+            ...order,
+            balance,
+            withdrawal,
+            list,
+            balanceConverted: toFormatSafe(dinero({ amount: balance, currency: 'BRL' })),
+            location,
+            note
+        }))
+    }, [list, withdrawal, note, balance]))
 
     return (
         <ContainerPd scroll={false}>
@@ -49,7 +62,20 @@ function Confirmation() {
                         trackColor={{false: theme.secondary, true: theme.primary}}
                     />
                 </ContainerSwitchWithdrawal>
-                <ButtonSubmit activeOpacity={0.5} onPress={() => console.log(order)}>
+                <LabelNote>Alguma observação?</LabelNote>
+                <Note maxLength={160} multiline autoCapitalize="sentences" autoCompleteType="username" defaultValue={note} onChangeText={setNote} autoCorrect selectionColor={theme.primary} placeholder="Observação..." placeholderTextColor={theme.secondaryColor}/>
+                <ButtonSubmit activeOpacity={0.5} onPress={async () => {
+                    await api.post('/orders', order)
+
+                    navigation.navigate('Home')
+
+                    setList([])
+
+                    Toast.show({
+                        type: 'success',
+                        text1: 'Pedido feito com sucesso!'
+                    })
+                }}>
                     <TextButtonSubmit>Confirmar</TextButtonSubmit>
                 </ButtonSubmit>
             </ScrollView>

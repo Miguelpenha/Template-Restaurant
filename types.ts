@@ -39,6 +39,12 @@ export type Inavigation = {
   Login: undefined
 }
 
+export interface ICreated {
+  date: String
+  hour: String
+  system: Date
+}
+
 export interface IPlate {
   _id: string
   name: string
@@ -56,11 +62,7 @@ export interface IPlate {
   description: string
   peoplesCount: number
   priceConverted: string
-  created: {
-    date: String
-    hour: String
-    system: Date
-  }
+  created: ICreated
 }
 
 export interface IItemList extends IPlate {
@@ -71,16 +73,21 @@ export interface IItemList extends IPlate {
   totalPriceConverted: string
 }
 
-export interface IOrder {
-  balance: number
-  list: IItemList[]
-  withdrawal: boolean
-}
-
 export interface ILocation {
   city: string // Cidade
   neighborhood: string // Bairro
   street: string // Rua
   complement: string // Complemento do endereço
   number: string // Número da casa
+}
+
+export interface IOrder {
+  _id: string
+  note: string
+  balance: number
+  created: ICreated
+  list: IItemList[]
+  location: ILocation
+  withdrawal: boolean
+  balanceConverted: string
 }
