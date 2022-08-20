@@ -1,4 +1,5 @@
 import { useTheme } from 'styled-components'
+import { Itheme } from '../types'
 import { StatusBar } from 'expo-status-bar'
 import { NavigationContainer } from '@react-navigation/native'
 import { darkThemeRouter, lightThemeRouter } from '../theme/routes'
@@ -9,7 +10,7 @@ import toastConfig from '../toastConfig'
 import useLocation from '../contexts/locationContext'
 
 function Routes() {
-  const { name } = useTheme()
+  const { name }: Itheme = useTheme()
   const { location } = useLocation()
 
   return (
