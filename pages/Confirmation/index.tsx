@@ -1,8 +1,8 @@
 import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/native'
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
 import useList from '../../contexts/listContext'
-import { ButtonBack, Title, Balance, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, LabelNote, Note, ButtonSubmit, TextButtonSubmit } from './style'
+import { ButtonBack, Title, Balance, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, LabelMethodPayment, ButtonMethodOfPayment, MethodOfPayment, LabelNote, Note, ButtonSubmit, TextButtonSubmit, TitleMethod, ContainerMethods, ContainerMethod, Method } from './style'
 import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
 import { IOrder } from '../../types'
@@ -12,6 +12,9 @@ import useLocation from '../../contexts/locationContext'
 import api from '../../api'
 import Toast from 'react-native-toast-message'
 import useOrders from '../../contexts/ordersContext'
+import { Modalize } from 'react-native-modalize'
+import { RFPercentage } from 'react-native-responsive-fontsize'
+import methodsOfPayments from './methodsOfPayments'
 
 interface IParams {
     transitionModal: boolean
@@ -28,6 +31,8 @@ function Confirmation() {
     const [note, setNote] = useState('')
     const { location } = useLocation()
     const { addOrder } = useOrders()
+    const [methodOfPayment, setMethodOfPayment] = useState('Dinheiro')
+    const modalMethodOfPayment = useRef<Modalize>(null)
 
     function makeBalance() {
         setBalance(0)
@@ -45,9 +50,10 @@ function Confirmation() {
             list,
             balanceConverted: toFormatSafe(dinero({ amount: balance, currency: 'BRL' })),
             location,
-            note
+            note,
+            methodOfPayment
         }))
-    }, [list, withdrawal, note, balance]))
+    }, [list, withdrawal, note, balance, methodOfPayment]))
 
     return (
         <ContainerPd scroll={false}>
@@ -64,6 +70,10 @@ function Confirmation() {
                         trackColor={{false: theme.secondary, true: theme.primary}}
                     />
                 </ContainerSwitchWithdrawal>
+                <LabelMethodPayment>Forma de pagamento</LabelMethodPayment>
+                <ButtonMethodOfPayment onPress={() => modalMethodOfPayment.current.open()}>
+                    <MethodOfPayment>{methodOfPayment}</MethodOfPayment>
+                </ButtonMethodOfPayment>
                 <LabelNote>Alguma observação?</LabelNote>
                 <Note maxLength={160} multiline autoCapitalize="sentences" autoCompleteType="username" defaultValue={note} onChangeText={setNote} autoCorrect selectionColor={theme.primary} placeholder="Observação..." placeholderTextColor={theme.secondaryColor}/>
                 <ButtonSubmit activeOpacity={0.5} onPress={async () => {
@@ -71,7 +81,7 @@ function Confirmation() {
                     
                     await addOrder(orderCreated)
 
-                    navigation.navigate('Home')
+                    navigation.navigate('Orders')
 
                     setList([])
 
@@ -83,6 +93,20 @@ function Confirmation() {
                     <TextButtonSubmit>Confirmar</TextButtonSubmit>
                 </ButtonSubmit>
             </ScrollView>
+            <Modalize ref={modalMethodOfPayment} modalHeight={RFPercentage(80)} modalStyle={{backgroundColor: theme.backgroundColor}}>
+                <TitleMethod>Forma de pagamento</TitleMethod>
+                <ContainerMethods>
+                    {methodsOfPayments.map((method, index) => (
+                        <ContainerMethod key={index} onPress={() => {
+                            setMethodOfPayment(method)
+
+                            modalMethodOfPayment.current.close()
+                        }}>
+                            <Method>{method}</Method>
+                        </ContainerMethod>
+                    ))}
+                </ContainerMethods>
+            </Modalize>
         </ContainerPd>
     )
 }

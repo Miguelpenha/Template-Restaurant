@@ -12,8 +12,8 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
 
 export const IconZoom = styled(MaterialIcons)`
     top: 13%;
-    right: 3.5%;
     z-index: 1;
+    right: 3.5%;
     position: absolute;
     color: ${props => props.theme.secondaryColor};
 `
@@ -60,14 +60,11 @@ export const Price = styled.Text`
 
 export const LabelNote = styled.Text`
     width: 85%;
-    margin-top: 12%;
-    padding-top: 4%;
+    margin-top: 5%;
     font-weight: bold;
     align-self: center;
-    border-top-width: 1px;
     font-size: ${RFPercentage(3)}px;
     color: ${props => props.theme.color};
-    border-top-color: ${props => props.theme.color};
 `
 
 export const Note = styled.TextInput`
