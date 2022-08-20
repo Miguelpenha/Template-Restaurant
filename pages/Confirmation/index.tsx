@@ -81,7 +81,17 @@ function Confirmation() {
                     
                     await addOrder(orderCreated)
 
-                    navigation.navigate('Orders')
+                    navigation.reset({
+                        index: 0,
+                        routes: [
+                            {
+                                name: 'Home'
+                            },
+                            {
+                                name: 'Orders'
+                            }
+                        ]
+                    })
 
                     setList([])
 
