@@ -1,7 +1,7 @@
 import { IOrder } from '../types'
 import { createContext, FC, useState, useContext, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import api from '../api'
+import api from '../api/base'
 
 interface IOrderContext {
     orders: IOrder[]
@@ -69,7 +69,7 @@ export const OrdersProvider: FC = ({ children }) => {
 
     useEffect(() => {
         loadOrders().then()
-    }, [orders])
+    }, [])
     
     return (
         <OrdersContext.Provider value={{orders, setOrders: setOrdersOnStorage, loadOrders, addOrder, removeOrder}}>

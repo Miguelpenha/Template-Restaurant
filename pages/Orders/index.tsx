@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import useOrders from '../../contexts/ordersContext'
 import ContainerPd from '../../components/ContainerPd'
 import { ButtonBack, TextNotFound, OrdersContainer, Loading } from './style'
@@ -6,13 +6,17 @@ import { ListRenderItemInfo, RefreshControl, Platform } from 'react-native'
 import { IOrder } from '../../types'
 import Order from './Order'
 import { useTheme } from 'styled-components'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 function Orders() {
     const navigation = useNavigation()
     const { orders, loadOrders } = useOrders()
     const theme = useTheme()
     const [refreshing, setRefreshing] = useState(false)
+
+    useFocusEffect(useCallback(() => {
+        loadOrders().then()
+    }, []))
 
     async function onRefreshAction() {
         setRefreshing(true)

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useTheme } from 'styled-components'
 import { useFocusEffect} from '@react-navigation/native'
 import ContainerPd from '../../components/ContainerPd'
@@ -13,28 +13,18 @@ import Footer from './Footer'
 
 export default function Home() {
   const [find, setFind] = useState('')
-  const [plates, setPlates] = useState<IPlate[]>()
+  const { data: plates, mutate: mutatePlates } = api.get<IPlate[]>('/plates?photo=true')
   const theme = useTheme()
   const [refreshing, setRefreshing] = useState(false)
 
-  async function getPlates() {
-    const { data } = await api('/plates?photo=true')
-
-    setPlates(data)
-  }
-
-  useEffect(() => {
-    getPlates().then()
-  }, [])
-
   useFocusEffect(useCallback(() => {
-    getPlates().then()
+    mutatePlates().then()
   }, []))
 
   async function onRefreshAction() {
     setRefreshing(true)
 
-    await getPlates()
+    await mutatePlates()
 
     setRefreshing(false)
   }

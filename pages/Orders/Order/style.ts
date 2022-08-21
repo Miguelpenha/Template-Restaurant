@@ -55,3 +55,11 @@ export const Finished = styled.Text`
     background-color: ${props => props.theme.primary};
     color: ${props => props.theme.backgroundColorSecondary};
 `
+
+export const Wait = styled.Text`
+    padding: 5%;
+    margin-left: auto;
+    background-color: yellow;
+    border-radius: ${RFPercentage(3)}px;
+    color: ${props => props.theme.secondary};
+`

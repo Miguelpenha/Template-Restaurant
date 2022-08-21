@@ -9,7 +9,7 @@ import { IOrder } from '../../types'
 import { useTheme } from 'styled-components'
 import { ScrollView } from 'react-native'
 import useLocation from '../../contexts/locationContext'
-import api from '../../api'
+import base from '../../api/base'
 import Toast from 'react-native-toast-message'
 import useOrders from '../../contexts/ordersContext'
 import { Modalize } from 'react-native-modalize'
@@ -77,7 +77,7 @@ function Confirmation() {
                 <LabelNote>Alguma observação?</LabelNote>
                 <Note maxLength={160} multiline autoCapitalize="sentences" autoCompleteType="username" defaultValue={note} onChangeText={setNote} autoCorrect selectionColor={theme.primary} placeholder="Observação..." placeholderTextColor={theme.secondaryColor}/>
                 <ButtonSubmit activeOpacity={0.5} onPress={async () => {
-                    const { data: { order: orderCreated } } = await api.post<{ order: IOrder }>('/orders', order)
+                    const { data: { order: orderCreated } } = await base.post<{ order: IOrder }>('/orders', order)
                     
                     await addOrder(orderCreated)
 
