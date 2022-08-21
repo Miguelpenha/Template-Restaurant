@@ -25,23 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0a192f"
       },
-      "package": "com.miguelpenha.TemplateRestaurant",
-      "intentFilters": [
-        {
-          "action": "VIEW",
-          "data": [
-            {
-              "scheme": "https",
-              "host": "*.template-restaurant-front-end.vercel.app",
-              "pathPrefix": "/"
-            }
-          ],
-          "category": [
-            "BROWSABLE",
-            "DEFAULT"
-          ]
-        }
-      ]
+      "package": "com.miguelpenha.TemplateRestaurant"
     },
     "web": {
       "favicon": "./assets/favicon.png"
