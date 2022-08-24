@@ -29,8 +29,8 @@ export const OrdersProvider: FC = ({ children }) => {
                     orderOrigin._id && ordersNew.push(orderOrigin)
                 })
             )
-
-            setOrdersOnStorage(ordersNew.length >= 1 ? ordersNew : null)
+            
+            setOrdersOnStorage(ordersNew)
         } else {
             setOrders([])
         }

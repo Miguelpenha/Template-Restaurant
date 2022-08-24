@@ -3,13 +3,14 @@ import useList from '../../contexts/listContext'
 import { useState, useCallback } from 'react'
 import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'
-import { ButtonBack, ButtonDeleteAll, IconDeleteAll, TextNotFound, Balance, InputFind, NotFoundFindMessage, Items, ButtonConfirm, TextButtonConfirm, Loading } from './style'
+import { ButtonBack, ButtonDeleteAll, IconDeleteAll, TextNotFound, Balance, InputFind, NotFoundFindMessage, Items, ButtonConfirm, TextButtonConfirm, Loading, ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll } from './style'
 import Toast from 'react-native-toast-message'
 import { IItemList } from '../../types'
 import { ListRenderItemInfo, Platform } from 'react-native'
 import Item from './Item'
 import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
+import Modal from 'react-native-modal'
 
 interface IParams {
   transitionModal: boolean
@@ -18,6 +19,7 @@ interface IParams {
 export default function List() {
   const navigation = useNavigation()
   const { list: listOrigin, setItem, setList: setListOrigin } = useList()
+  const [openModal, setOpenModal] = useState(false)
   const [list, setList] = useState<IItemList[]>()
   const theme = useTheme()
   const [find, setFind] = useState('')
@@ -54,14 +56,7 @@ export default function List() {
           data={list}
           ListHeaderComponent={<>
             {list && list.length >= 1 && (
-              <ButtonDeleteAll onPress={() => {
-                setListOrigin([])
-  
-                Toast.show({
-                  type: 'error',
-                  text1: 'Todos os pratos foram deletados com sucesso'
-                })
-              }}>
+              <ButtonDeleteAll onPress={() => setOpenModal(true)}>
                 <IconDeleteAll name="delete" size={30}/>
               </ButtonDeleteAll>
             )}
@@ -70,6 +65,34 @@ export default function List() {
               <InputFind style={{ shadowColor: theme.primary }} autoCapitalize="sentences" autoCompleteType="username" defaultValue={find} onChangeText={setFind} autoCorrect selectionColor={theme.secondary} placeholder="Pesquisar..." placeholderTextColor={theme.secondaryColor}/>
             )}
             {list && list.length >= 1 && !exists && <NotFoundFindMessage>Sem resultados {':('}</NotFoundFindMessage>}
+            {list && list.length >= 1 && (
+              <Modal
+                isVisible={openModal}
+                onBackdropPress={() => setOpenModal(false)}
+                onBackButtonPress={() => setOpenModal(false)}
+              >
+                <ModalDeleteAll>
+                  <TitleModalDeleteAll>Remover todos os pratos?</TitleModalDeleteAll>
+                  <FooterModalDeleteAll>
+                    <ButtonCancelModalDeleteAll onPress={() => setOpenModal(false)}>
+                      <TextButtonCancelModalDeleteAll>Cancelar</TextButtonCancelModalDeleteAll>
+                    </ButtonCancelModalDeleteAll>
+                    <ButtonSubmitModalDeleteAll onPress={() => {
+                      setListOrigin([])
+  
+                      Toast.show({
+                        type: 'error',
+                        text1: 'Todos os pratos foram deletados com sucesso'
+                      })
+
+                      setOpenModal(false)
+                    }}>
+                      <TextButtonSubmitModalDeleteAll>Remover</TextButtonSubmitModalDeleteAll>
+                    </ButtonSubmitModalDeleteAll>
+                  </FooterModalDeleteAll>
+                </ModalDeleteAll>
+              </Modal>
+            )}
           </>}
           contentContainerStyle={{ paddingBottom: '40%' }}
           keyExtractor={(item: IItemList) => item._id}
