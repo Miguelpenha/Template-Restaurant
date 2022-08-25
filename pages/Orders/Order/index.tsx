@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import base from '../../../api/base'
 import useOrders from '../../../contexts/ordersContext'
 import { IOrder } from '../../../types'
@@ -7,25 +7,17 @@ import { Container, Header, Balance, ContainerIconDelete, IconDelete, Note, Foot
 
 interface Iprops {
     order: IOrder
+    setOpenModal: Dispatch<SetStateAction<IOrder | null | undefined>>
 }
 
-const Order: FC<Iprops> = ({ order }) => {
+const Order: FC<Iprops> = ({ order, setOpenModal }) => {
     const { loadOrders } = useOrders()
 
     return (
         <Container>
             <Header>
                 <Balance>{order.balanceConverted}</Balance>
-                <ContainerIconDelete onPress={async () => {
-                    await base.delete(`orders/${order._id}`)
-
-                    await loadOrders()
-
-                    Toast.show({
-                        type: 'error',
-                        text1: 'Pedido cancelado com sucesso'
-                    })
-                }}>
+                <ContainerIconDelete onPress={() => setOpenModal(order)}>
                     <IconDelete size={30} name="delete"/>
                 </ContainerIconDelete>
             </Header>
