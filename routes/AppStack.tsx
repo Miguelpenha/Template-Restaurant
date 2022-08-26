@@ -23,7 +23,9 @@ function AppStack() {
       <Screen initialParams={{ transitionModal: false }} name="Confirmation" component={Confirmation} options={({ route: { params } }) => ({
           presentation: params.transitionModal ? 'modal' : 'card'
       })}/>
-      <Screen name="Location" component={Location} initialParams={{ initial: false }}/>
+      <Screen initialParams={{ initial: false, transitionModal: false, edit: false }} name="Location" component={Location} options={({ route: { params } }) => ({
+          presentation: params.transitionModal ? 'modal' : 'card'
+      })}/>
       <Screen name="Settings" component={Settings}/>
       <Screen name="Orders" component={Orders}/>
     </Navigator>

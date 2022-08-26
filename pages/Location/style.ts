@@ -3,11 +3,15 @@ import ButtonBackNotStyled from '../../components/ButtonBack'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
 
-export const ButtonBack = styled(ButtonBackNotStyled)`
-    top: 8%;
-    left: 2%;
+interface IButtonBack {
+    transitionModal: boolean
+}
+
+export const ButtonBack = styled(ButtonBackNotStyled)<IButtonBack>`
     z-index: 2;
     position: absolute;
+    top: ${props => props.transitionModal ? 7 : 7}%;
+    left: ${props => props.transitionModal ? -2 : 3}%;
 `
 
 export const ContainerSettings = styled.TouchableOpacity`
@@ -25,6 +29,7 @@ export const Title = styled.Text`
     margin-top: 25%;
     font-weight: bold;
     align-self: center;
+    text-align: center;
     font-size: ${RFPercentage(5)}px;
     color: ${props => props.theme.primary};
 `

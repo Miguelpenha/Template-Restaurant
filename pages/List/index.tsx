@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'
 import { ButtonBack, ButtonDeleteAll, IconDeleteAll, TextNotFound, Balance, InputFind, NotFoundFindMessage, Items, ButtonConfirm, TextButtonConfirm, Loading, ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll } from './style'
 import Toast from 'react-native-toast-message'
-import { IItemList } from '../../types'
+import { IItemList, Inavigation } from '../../types'
 import { ListRenderItemInfo, Platform } from 'react-native'
 import Item from './Item'
 import toFormatSafe from '../../utils/toFormatSafe'
@@ -103,7 +103,11 @@ export default function List() {
           )}
         />
         {list && list.length >= 1 && (
-          <ButtonConfirm activeOpacity={0.5} onPress={() => navigation.navigate('Confirmation', {
+          <ButtonConfirm activeOpacity={0.5} onPress={() => navigation.navigate('Location', {
+            edit: 'Confirmation',
+            editParams: {
+              transitionModal: true
+            } as Inavigation['Confirmation'],
             transitionModal: true
           })}>
             <TextButtonConfirm>Pedir</TextButtonConfirm>

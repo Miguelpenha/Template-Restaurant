@@ -5,7 +5,7 @@ import useList from '../../contexts/listContext'
 import { ButtonBack, Title, Balance, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, LabelMethodPayment, ButtonMethodOfPayment, MethodOfPayment, LabelNote, Note, ButtonSubmit, TextButtonSubmit, TitleMethod, ContainerMethods, ContainerMethod, Method } from './style'
 import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
-import { IOrder } from '../../types'
+import { ILocation, IOrder } from '../../types'
 import { useTheme } from 'styled-components'
 import { ScrollView } from 'react-native'
 import useLocation from '../../contexts/locationContext'
@@ -17,11 +17,12 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import methodsOfPayments from './methodsOfPayments'
 
 interface IParams {
-    transitionModal: boolean
+    location: ILocation
+    transitionModal?: boolean
 }
 
 function Confirmation() {
-    const { transitionModal } = useRoute().params as IParams
+    const { transitionModal, location: locationOrigin } = useRoute().params as IParams
     const navigation = useNavigation()
     const [balance, setBalance] = useState(0)
     const { list, setList } = useList()
@@ -49,7 +50,7 @@ function Confirmation() {
             withdrawal,
             list,
             balanceConverted: toFormatSafe(dinero({ amount: balance, currency: 'BRL' })),
-            location,
+            location: locationOrigin || location,
             note,
             methodOfPayment
         }))

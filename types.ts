@@ -28,10 +28,14 @@ export type Inavigation = {
     plate: IPlate
   }
   Confirmation: {
+    location?: ILocation | null
     transitionModal?: boolean
   }
   Location: {
     initial?: boolean
+    transitionModal?: boolean
+    editParams?: object | null
+    edit?: keyof Inavigation | false
   }
   LocationInitial: {
     initial?: boolean

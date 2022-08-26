@@ -1,3 +1,4 @@
+import { Inavigation } from '../../types'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
 import useLocation from '../../contexts/locationContext'
@@ -9,10 +10,13 @@ import Toast from 'react-native-toast-message'
 
 interface IParams {
     initial?: boolean
+    transitionModal?: boolean
+    editParams?: object | null
+    edit?: keyof Inavigation | boolean
 }
 
 function Location() {
-    const { initial } = useRoute().params as IParams
+    const { initial, edit, editParams, transitionModal } = useRoute().params as IParams
     const navigation = useNavigation()
     const theme = useTheme()
     const { location, setLocation } = useLocation()
@@ -32,14 +36,14 @@ function Location() {
 
     return (
         <ContainerPd scroll={false}>
-            {!initial && <ButtonBack iconSize={30} iconName="arrow-back-ios" onClick={() => navigation.goBack()}/>}
+            {!initial && <ButtonBack transitionModal={transitionModal} iconSize={transitionModal ? 50 : 30} iconName={transitionModal ? 'expand-less' : 'arrow-back-ios'} onClick={() => navigation.goBack()}/>}
             <ScrollView>
                 {initial && (
                     <ContainerSettings onPress={() => navigation.navigate('Settings')}>
                         <Settings size={30} name="settings"/>
                     </ContainerSettings>
                 )}
-                <Title>Localização</Title>
+                <Title>{edit ? 'Confirmar Localização' : 'Localização'}</Title>
                 <Field>
                     <Label>Cidade <Required>*</Required></Label>
                     <Input autoCompleteType="street-address" defaultValue={city} onChangeText={setCity} autoCorrect selectionColor={theme.secondary} placeholder="Cidade..." placeholderTextColor={theme.secondaryColor}/>
@@ -62,20 +66,26 @@ function Location() {
                 </Field>
                 <ButtonSubmit activeOpacity={0.5} onPress={() => {
                     if (city && neighborhood && street && complement && number) {
-                        setLocation({
+                        const location = {
                             city,
                             complement,
                             neighborhood,
                             number,
                             street
-                        })
-                        
-                        !initial && navigation.goBack()
+                        }
 
-                        !initial && Toast.show({
-                            type: 'success',
-                            text1: 'Localização editada com sucesso'
-                        })
+                        if (edit && typeof edit === 'string') {
+                            navigation.navigate(edit, { location, ...editParams } || { location })
+                        } else {
+                            setLocation(location)
+
+                            !initial && navigation.goBack()
+
+                            !initial && Toast.show({
+                                type: 'success',
+                                text1: 'Localização editada com sucesso'
+                            })
+                        }
                     } else {
                         Toast.show({
                             type: 'error',
