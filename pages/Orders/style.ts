@@ -27,7 +27,7 @@ export const TextNotFound = styled.Text`
 `
 
 export const OrdersContainer = styled.FlatList`
-    margin-top: 25%;
+    margin-top: 10%;
 `
 
 export const Loading = styled.ActivityIndicator`
