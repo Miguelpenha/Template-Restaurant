@@ -1,6 +1,6 @@
 import { IOrder } from '../../../types'
 import { Dispatch, SetStateAction, FC } from 'react'
-import { Container, Header, Balance, ContainerIconDelete, IconDelete, Note, Footer, Created, Finished, Wait } from './style'
+import { Container, Header, Balance, ContainerIconDelete, IconDelete, Note, Footer, Created, FinishedStatus, WaitStatus } from './style'
 
 interface Iprops {
     order: IOrder
@@ -12,14 +12,16 @@ const Order: FC<Iprops> = ({ order, setOpenModal }) => {
         <Container>
             <Header>
                 <Balance>{order.balanceConverted}</Balance>
-                <ContainerIconDelete onPress={() => setOpenModal(order)}>
-                    <IconDelete size={30} name="delete"/>
-                </ContainerIconDelete>
+                {!order.finished && (
+                    <ContainerIconDelete onPress={() => setOpenModal(order)}>
+                        <IconDelete size={30} name="delete"/>
+                    </ContainerIconDelete>
+                )}
             </Header>
             <Note>{order.note}</Note>
             <Footer>
                 <Created>Feito em {order.created.hour}</Created>
-                {order.finished ? <Finished>Entregue</Finished> : <Wait>A caminho</Wait>}
+                {order.finished ? <FinishedStatus>Entregue</FinishedStatus> : <WaitStatus>A caminho</WaitStatus>}
             </Footer>
         </Container>
     )

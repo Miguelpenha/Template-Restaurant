@@ -1,4 +1,4 @@
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
 
@@ -17,6 +17,7 @@ export const Header = styled.View`
 `
 
 export const Balance = styled.Text`
+    padding: 2% 0%;
     font-weight: bold;
     align-self: center;
     font-size: ${RFPercentage(2.5)}px;
@@ -42,24 +43,29 @@ export const Footer = styled.View`
 `
 
 export const Created = styled.Text`
-    padding: 5% 0%;
-    align-self: center;
+    align-self: flex-end;
     font-size: ${RFPercentage(1.9)}px;
     color: ${props => props.theme.color};
 `
 
-export const Finished = styled.Text`
+const status = css`
+    width: 45%;
     padding: 5%;
     margin-left: auto;
+    text-align: center;
     border-radius: ${RFPercentage(3)}px;
-    background-color: ${props => props.theme.primary};
-    color: ${props => props.theme.backgroundColorSecondary};
 `
 
-export const Wait = styled.Text`
-    padding: 5%;
-    margin-left: auto;
+export const FinishedStatus = styled.Text`
+    background-color: ${props => props.theme.primary};
+    color: ${props => props.theme.backgroundColorSecondary};
+
+    ${status}
+`
+
+export const WaitStatus = styled.Text`
     background-color: yellow;
-    border-radius: ${RFPercentage(3)}px;
     color: ${props => props.theme.secondary};
+
+    ${status}
 `
