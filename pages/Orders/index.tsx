@@ -1,22 +1,22 @@
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import useOrders from '../../contexts/ordersContext'
-import ContainerPd from '../../components/ContainerPd'
-import { ButtonBack, TextNotFound, OrdersContainer, Loading, ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll } from './style'
-import { ListRenderItemInfo, RefreshControl, Platform } from 'react-native'
+import { useState, useCallback } from 'react'
 import { IOrder } from '../../types'
-import Order from './Order'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
-import { useCallback, useState } from 'react'
+import ContainerPd from '../../components/ContainerPd'
 import Modal from 'react-native-modal'
+import { ButtonBack, TextNotFound, OrdersContainer, Loading, ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll } from './style'
 import base from '../../api/base'
 import Toast from 'react-native-toast-message'
+import { ListRenderItemInfo, RefreshControl, Platform } from 'react-native'
+import Order from './Order'
 
 function Orders() {
-    const navigation = useNavigation()
-    const { orders, loadOrders } = useOrders()
-    const theme = useTheme()
+    const { loadOrders, orders } = useOrders()
     const [refreshing, setRefreshing] = useState(false)
     const [openModal, setOpenModal] = useState<IOrder | null>()
+    const navigation = useNavigation()
+    const theme = useTheme()
 
     useFocusEffect(useCallback(() => {
         loadOrders().then()

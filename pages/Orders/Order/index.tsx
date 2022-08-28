@@ -1,8 +1,5 @@
-import { Dispatch, FC, SetStateAction } from 'react'
-import base from '../../../api/base'
-import useOrders from '../../../contexts/ordersContext'
 import { IOrder } from '../../../types'
-import Toast from 'react-native-toast-message'
+import { Dispatch, SetStateAction, FC } from 'react'
 import { Container, Header, Balance, ContainerIconDelete, IconDelete, Note, Footer, Created, Finished, Wait } from './style'
 
 interface Iprops {
@@ -11,8 +8,6 @@ interface Iprops {
 }
 
 const Order: FC<Iprops> = ({ order, setOpenModal }) => {
-    const { loadOrders } = useOrders()
-
     return (
         <Container>
             <Header>
