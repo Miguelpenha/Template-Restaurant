@@ -3,7 +3,7 @@ import useList from '../../contexts/listContext'
 import { useState, useCallback } from 'react'
 import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'
-import { ButtonBack, TextNotFound, Balance, InputFind, NotFoundFindMessage, Items, ButtonDeleteAll, IconDeleteAll, ButtonConfirm, TextButtonConfirm, Loading, ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll } from './style'
+import { ButtonBack, Balance, InputFind, NotFoundFindMessage, Items, Title, TextNotFound, ButtonDeleteAll, IconDeleteAll, ButtonConfirm, TextButtonConfirm, Loading, ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll } from './style'
 import Toast from 'react-native-toast-message'
 import { IItemList, Inavigation } from '../../types'
 import { ListRenderItemInfo, Platform } from 'react-native'
@@ -51,10 +51,11 @@ export default function List() {
     return (
       <ContainerPd scroll={false}>
         <ButtonBack transitionModal={transitionModal} iconSize={transitionModal ? 50 : 30} iconName={transitionModal ? 'expand-less' : 'arrow-back-ios'} onClick={() => navigation.goBack()}/>
-        {list && list.length < 1 && <TextNotFound>Ainda não há pratos {'\n'}no seu carrinho{'\n'}{':('}</TextNotFound>}
         <Items
           data={list}
           ListHeaderComponent={<>
+            <Title>Seu Carrinho</Title>
+            {list && list.length < 1 && <TextNotFound>Ainda não há pratos {'\n'}no seu carrinho{'\n'}{':('}</TextNotFound>}
             {list && list.length >= 1 && (
               <ButtonDeleteAll onPress={() => setOpenModal(true)}>
                 <IconDeleteAll name="delete" size={30}/>

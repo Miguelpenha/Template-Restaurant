@@ -14,17 +14,8 @@ export const ButtonBack = styled(ButtonBackNotStyled)<IButtonBack>`
     left: ${props => props.transitionModal ? -2 : 2}%;
 `
 
-export const TextNotFound = styled.Text`
-    margin-top: 40%;
-    align-self: center;
-    text-align: center;
-    font-size: ${RFPercentage(4.5)}px;
-    line-height: ${RFPercentage(6.5)}px;
-    color: ${props => props.theme.primary};
-`
-
 export const Balance = styled.Text`
-    margin-top: 35%;
+    margin-top: 10%;
     font-weight: bold;
     align-self: center;
     font-size: ${RFPercentage(3.8)}px;
@@ -60,6 +51,23 @@ export const NotFoundFindMessage = styled.Text`
 
 export const Items = styled.FlatList`
     padding-top: 5%;
+`
+
+export const Title = styled.Text`
+    margin-top: 25%;
+    font-weight: bold;
+    align-self: center;
+    font-size: ${RFPercentage(5)}px;
+    color: ${props => props.theme.primary};
+`
+
+export const TextNotFound = styled.Text`
+    margin-top: 20%;
+    align-self: center;
+    text-align: center;
+    font-size: ${RFPercentage(4.5)}px;
+    line-height: ${RFPercentage(6.5)}px;
+    color: ${props => props.theme.primary};
 `
 
 export const ButtonDeleteAll = styled.TouchableOpacity`
@@ -116,7 +124,7 @@ export const FooterModalDeleteAll = styled.View`
     flex-direction: row;
 `
 
-export const ButtonModalDeleteAll = css`
+const ButtonModalDeleteAll = css`
     width: 35%;
     padding: 4%;
     border-radius: ${RFPercentage(1)}px;
