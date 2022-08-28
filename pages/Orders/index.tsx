@@ -20,7 +20,7 @@ function Orders() {
 
     useFocusEffect(useCallback(() => {
         loadOrders().then()
-    }, []))
+    }, [orders]))
 
     async function onRefreshAction() {
         setRefreshing(true)
