@@ -14,17 +14,6 @@ export const ButtonBack = styled(ButtonBackNotStyled)<IButtonBack>`
     left: ${props => props.transitionModal ? -2 : 2}%;
 `
 
-export const ButtonDeleteAll = styled.TouchableOpacity`
-    top: 14%;
-    right: 3.5%;
-    z-index: 2;
-    position: absolute;
-`
-
-export const IconDeleteAll = styled(MaterialIcons)`
-    color: ${props => props.theme.secondaryColor};
-`
-
 export const TextNotFound = styled.Text`
     margin-top: 40%;
     align-self: center;
@@ -71,6 +60,17 @@ export const NotFoundFindMessage = styled.Text`
 
 export const Items = styled.FlatList`
     padding-top: 5%;
+`
+
+export const ButtonDeleteAll = styled.TouchableOpacity`
+    top: 14%;
+    z-index: 2;
+    right: 3.5%;
+    position: absolute;
+`
+
+export const IconDeleteAll = styled(MaterialIcons)`
+    color: ${props => props.theme.secondaryColor};
 `
 
 export const ButtonConfirm = styled.TouchableOpacity`
