@@ -4,7 +4,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const Menu = styled.View`
     padding: 0% 4%;
-    margin-top: 14%;
+    margin-top: 16%;
     flex-direction: row;
     justify-content: space-between;
 `
