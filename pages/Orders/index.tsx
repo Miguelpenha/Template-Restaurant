@@ -5,7 +5,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'
 import Modal from 'react-native-modal'
-import { ButtonBack, TextNotFound, OrdersContainer, Loading, ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll } from './style'
+import { ButtonBack, Title, TextNotFound, OrdersContainer, Loading, ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll } from './style'
 import base from '../../api/base'
 import Toast from 'react-native-toast-message'
 import { ListRenderItemInfo, RefreshControl, Platform } from 'react-native'
@@ -62,6 +62,7 @@ function Orders() {
                     </ModalDeleteAll>
                 </Modal>
                 <ButtonBack iconSize={30} onClick={() => navigation.goBack()}/>
+                <Title>Seus Pedidos</Title>
                 {orders && orders.length < 1 && <TextNotFound>Ainda não há pedidos {'\n'}no seu histórico{'\n'}{':('}</TextNotFound>}
                 <OrdersContainer 
                     data={orders}

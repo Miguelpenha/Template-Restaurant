@@ -9,8 +9,16 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
     position: absolute;
 `
 
+export const Title = styled.Text`
+    margin-top: 25%;
+    font-weight: bold;
+    align-self: center;
+    font-size: ${RFPercentage(4.8)}px;
+    color: ${props => props.theme.primary};
+`
+
 export const TextNotFound = styled.Text`
-    margin-top: 40%;
+    margin-top: 15%;
     align-self: center;
     text-align: center;
     font-size: ${RFPercentage(4.5)}px;
@@ -47,7 +55,7 @@ export const FooterModalDeleteAll = styled.View`
     flex-direction: row;
 `
 
-export const ButtonModalDeleteAll = css`
+const ButtonModalDeleteAll = css`
     width: 35%;
     padding: 4%;
     border-radius: ${RFPercentage(1)}px;
