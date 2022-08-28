@@ -42,11 +42,10 @@ export const Description = styled.Text`
 
 export const PeoplesCount = styled.Text`
     width: 85%;
-    margin-top: 2%;
-    font-weight: bold;
+    margin-top: 3%;
     align-self: center;
     font-size: ${RFPercentage(3)}px;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.primary};
 `
 
 export const Price = styled.Text`
@@ -61,7 +60,6 @@ export const Price = styled.Text`
 export const LabelNote = styled.Text`
     width: 85%;
     margin-top: 5%;
-    font-weight: bold;
     align-self: center;
     font-size: ${RFPercentage(3)}px;
     color: ${props => props.theme.color};
