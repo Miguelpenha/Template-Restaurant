@@ -1,4 +1,4 @@
-import { IPlate } from '../../../types'
+import { IItemList, IPlate } from '../../../types'
 import { FC, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
@@ -13,10 +13,10 @@ interface Iprops {
 const Plate: FC<Iprops> = ({ plate }) => {
     const navigation = useNavigation()
     const theme = useTheme()
-    const { getItem } = useList()
-    const [exists, setExists] = useState(false)
+    const { getItem, list } = useList()
+    const [item, setItem] = useState<IItemList | null>()
 
-    useEffect(() =>  setExists(getItem(plate._id) ? true : false), [plate])
+    useEffect(() => setItem(getItem(plate._id) || null), [list])
     
     return (
         <Container onPress={() => navigation.navigate('Plate', { plate })} style={{ shadowColor: theme.secondary }}>
@@ -28,7 +28,7 @@ const Plate: FC<Iprops> = ({ plate }) => {
                 <PeoplesCount>Serve {plate.peoplesCount} {plate.peoplesCount <= 1 ? 'pessoa' : 'pessoas'}</PeoplesCount>
                 <ContainerPriceAndAdded>
                     <Price>{plate.priceConverted}</Price>
-                    {exists && <Added>Já Adicionado</Added>}
+                    {item && <Added>Já Adicionado</Added>}
                 </ContainerPriceAndAdded>
             </View>
             <Photo resizeMode="center" source={{
