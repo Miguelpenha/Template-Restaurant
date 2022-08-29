@@ -36,13 +36,8 @@ function Location() {
 
     return (
         <ContainerPd scroll={false}>
-            {!initial && <ButtonBack transitionModal={transitionModal} iconSize={transitionModal ? 50 : 30} iconName={transitionModal ? 'expand-less' : 'arrow-back-ios'} onClick={() => navigation.goBack()}/>}
+            <ButtonBack transitionModal={transitionModal} iconSize={transitionModal ? 50 : 30} iconName={transitionModal ? 'expand-less' : 'arrow-back-ios'} onClick={() => navigation.goBack()}/>
             <ScrollView>
-                {initial && (
-                    <ContainerSettings onPress={() => navigation.navigate('Settings')}>
-                        <Settings size={30} name="settings"/>
-                    </ContainerSettings>
-                )}
                 <Title>{edit ? 'Confirmar Localização' : 'Localização'}</Title>
                 <Field>
                     <Label>Cidade <Required>*</Required></Label>

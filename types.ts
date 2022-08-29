@@ -31,6 +31,15 @@ export type Inavigation = {
     location?: ILocation | null
     transitionModal?: boolean
   }
+  Contact: {
+    initial?: boolean
+    transitionModal?: boolean
+    editParams?: object | null
+    edit?: keyof Inavigation | false
+  }
+  ContactInitial: {
+    initial?: boolean
+  }
   Location: {
     initial?: boolean
     transitionModal?: boolean
@@ -80,7 +89,7 @@ export interface IItemList extends IPlate {
 
 export interface IContact {
   email?: string
-  telephone: number
+  telephone: string
 }
 
 export interface ILocation {

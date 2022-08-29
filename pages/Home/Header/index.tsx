@@ -37,17 +37,20 @@ const Header: FC<Iprops> = ({ find, plates, setFind }) => {
         <>
             <Menu>
                 <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-                    <IconMenu name="settings" size={40}/>
+                    <IconMenu name="settings" size={35}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
+                    <IconMenu name="contact-page" size={35}/>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Location')}>
-                    <IconMenu name="location-on" size={40}/>
+                    <IconMenu name="location-on" size={35}/>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Orders')}>
-                    <IconMenu name="receipt" size={40}/>
+                    <IconMenu name="receipt" size={35}/>
                     {ordersInUse && ordersInUse.length >= 1 && countOrdersOnHold >= 1 && <Quantity>{countOrdersOnHold}</Quantity>}
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('List')}>
-                    <IconMenu name="shopping-cart" size={40}/>
+                    <IconMenu name="shopping-cart" size={35}/>
                     {list.length >= 1 && <Quantity>{list.length}</Quantity>}
                 </TouchableOpacity>
             </Menu>
