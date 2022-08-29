@@ -8,7 +8,7 @@ import dinero from 'dinero.js'
 import { ILocation, IOrder } from '../../types'
 import { useTheme } from 'styled-components'
 import { ScrollView } from 'react-native'
-import useLocation from '../../contexts/locationContext'
+import { useProfile } from '../../contexts/profileContext'
 import base from '../../api/base'
 import Toast from 'react-native-toast-message'
 import useOrders from '../../contexts/ordersContext'
@@ -30,7 +30,7 @@ function Confirmation() {
     const theme = useTheme()
     const [withdrawal, setWithdrawal] = useState(false)
     const [note, setNote] = useState('')
-    const { location } = useLocation()
+    const { profile } = useProfile()
     const { addOrder } = useOrders()
     const [methodOfPayment, setMethodOfPayment] = useState('Dinheiro')
     const modalMethodOfPayment = useRef<Modalize>(null)
@@ -50,7 +50,7 @@ function Confirmation() {
             withdrawal,
             list,
             balanceConverted: toFormatSafe(dinero({ amount: balance, currency: 'BRL' })),
-            location: locationOrigin || location,
+            location: locationOrigin || profile && profile.location,
             note,
             methodOfPayment
         }))

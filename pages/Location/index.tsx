@@ -1,7 +1,7 @@
-import { Inavigation } from '../../types'
+import { ILocation, Inavigation } from '../../types'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
-import useLocation from '../../contexts/locationContext'
+import { useProfile } from '../../contexts/profileContext'
 import { useEffect, useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
 import { ButtonBack, ContainerSettings, Settings, Title, Field, Label, Required, Input, ButtonSubmit, TextButtonSubmit } from './style'
@@ -19,20 +19,20 @@ function Location() {
     const { initial, edit, editParams, transitionModal } = useRoute().params as IParams
     const navigation = useNavigation()
     const theme = useTheme()
-    const { location, setLocation } = useLocation()
-    const [city, setCity] = useState(location ? location.city : '')
-    const [neighborhood, setNeighborhood] = useState(location ? location.neighborhood : '')
-    const [street, setStreet] = useState(location ? location.street : '')
-    const [complement, setComplement] = useState(location ? location.complement : '')
-    const [number, setNumber] = useState(location ? location.number : '')
+    const { profile, setProfile } = useProfile()
+    const [city, setCity] = useState(profile && profile.location ? profile.location.city : '')
+    const [neighborhood, setNeighborhood] = useState(profile && profile.location ? profile.location.neighborhood : '')
+    const [street, setStreet] = useState(profile && profile.location ? profile.location.street : '')
+    const [complement, setComplement] = useState(profile && profile.location ? profile.location.complement : '')
+    const [number, setNumber] = useState(profile && profile.location ? profile.location.number : '')
 
     useEffect(() => {
-        setCity(location ? location.city : '')
-        setNeighborhood(location ? location.neighborhood : '')
-        setStreet(location ? location.street : '')
-        setComplement(location ? location.complement : '')
-        setNumber(location ? location.number : '')
-    }, [location])
+        setCity(profile && profile.location ? profile.location.city : '')
+        setNeighborhood(profile && profile.location ? profile.location.neighborhood : '')
+        setStreet(profile && profile.location ? profile.location.street : '')
+        setComplement(profile && profile.location ? profile.location.complement : '')
+        setNumber(profile && profile.location ? profile.location.number : '')
+    }, [profile && profile.location])
 
     return (
         <ContainerPd scroll={false}>
@@ -66,7 +66,7 @@ function Location() {
                 </Field>
                 <ButtonSubmit activeOpacity={0.5} onPress={() => {
                     if (city && neighborhood && street && complement && number) {
-                        const location = {
+                        const location: ILocation = {
                             city,
                             complement,
                             neighborhood,
@@ -75,9 +75,12 @@ function Location() {
                         }
 
                         if (edit && typeof edit === 'string') {
-                            navigation.navigate(edit, { location, ...editParams } || { location })
+                            navigation.navigate(edit as any, { location, ...editParams } || { location })
                         } else {
-                            setLocation(location)
+                            setProfile({
+                                ...profile,
+                                location
+                            })
 
                             !initial && navigation.goBack()
 

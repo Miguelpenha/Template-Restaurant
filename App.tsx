@@ -4,7 +4,7 @@ import AppLoading from 'expo-app-loading'
 import { green } from './utils/colorsLogs'
 import { ThemeProvider } from './theme'
 import { ListProvider } from './contexts/listContext'
-import { LocationProvider } from './contexts/locationContext'
+import { ProfileProvider } from './contexts/profileContext'
 import { OrdersProvider } from './contexts/ordersContext'
 import Routes from './routes'
 
@@ -24,11 +24,11 @@ function App() {
     return (
       <ThemeProvider>
         <ListProvider>
-          <LocationProvider>
+          <ProfileProvider>
             <OrdersProvider>
               <Routes/>
             </OrdersProvider>
-          </LocationProvider>
+          </ProfileProvider>
         </ListProvider>
       </ThemeProvider>
     )

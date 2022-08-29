@@ -10,7 +10,7 @@ import checkUpdate from './checkUpdate'
 import Constants from 'expo-constants'
 import { blue, red, magenta, yellow } from '../../utils/colorsLogs'
 import Toast from 'react-native-toast-message'
-import useLocation from '../../contexts/locationContext'
+import { useProfile } from '../../contexts/profileContext'
 import useOrders from '../../contexts/ordersContext'
 
 function Settings() {
@@ -18,7 +18,7 @@ function Settings() {
     const { theme, themeName, mutateTheme, loadTheme } = useTheme()
     const [dark, setDark] = useState(themeName==='light' ? false : true)
     const [checkUpdating, setCheckUpdating] = useState(false)
-    const { loadLocation } = useLocation()
+    const { loadProfile } = useProfile()
     const { loadOrders } = useOrders()
     
     return (
@@ -43,19 +43,19 @@ function Settings() {
                 </ContainerSwitch>
                 <Button onPress={() => {
                     AsyncStorage.removeItem('@templateRestaurant:theme').then(() => {
-                        AsyncStorage.removeItem('@templateRestaurant:location').then(async () => {
+                        AsyncStorage.removeItem('@templateRestaurant:profile').then(async () => {
                             AsyncStorage.removeItem('@templateRestaurant:orders').then(async () => {
                                 console.log(yellow('>> All data has been deleted'))
                                 console.log(red('   >> @templateRestaurant:theme'))
-                                console.log(red('   >> @templateRestaurant:location'))
                                 console.log(red('   >> @templateRestaurant:orders'))
+                                console.log(red('   >> @templateRestaurant:profile'))
 
                                 Toast.show({
                                     type: 'error',
                                     text1: 'Dados Apagados'
                                 })
 
-                                await loadLocation()
+                                await loadProfile()
                                 await loadTheme()
                                 await loadOrders()
                                 

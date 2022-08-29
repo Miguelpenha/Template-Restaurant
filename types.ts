@@ -78,12 +78,23 @@ export interface IItemList extends IPlate {
   totalPriceConverted: string
 }
 
+export interface IContact {
+  email?: string
+  telephone: number
+}
+
 export interface ILocation {
   city: string // Cidade
   neighborhood: string // Bairro
   street: string // Rua
   complement: string // Complemento do endereço
   number: string // Número da casa
+}
+
+export interface IProfile {
+  name: string
+  contact: IContact
+  location: ILocation
 }
 
 export interface IOrder {
