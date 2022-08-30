@@ -40,11 +40,11 @@ function Contact() {
                 <Title>{edit ? 'Confirmar Contato' : 'Contato'}</Title>
                 <Field>
                     <Label>Email <Required>*</Required></Label>
-                    <Input autoCompleteType="email" defaultValue={email} onChangeText={setEmail} autoCorrect selectionColor={theme.secondary} placeholder="Email..." placeholderTextColor={theme.secondaryColor}/>
+                    <Input autoCapitalize="none" autoCompleteType="email" defaultValue={email} onChangeText={setEmail} autoCorrect selectionColor={theme.secondary} placeholder="Email..." placeholderTextColor={theme.secondaryColor}/>
                 </Field>
                 <Field>
                     <Label>Telefone <Required>*</Required></Label>
-                    <Input autoCompleteType="tel" defaultValue={telephone} onChangeText={setTelephone} autoCorrect selectionColor={theme.secondary} placeholder="Bairro..." placeholderTextColor={theme.secondaryColor}/>
+                    <Input autoCapitalize="none" autoCompleteType="tel" defaultValue={telephone} onChangeText={setTelephone} autoCorrect selectionColor={theme.secondary} placeholder="Telefone..." placeholderTextColor={theme.secondaryColor}/>
                 </Field>
                 <ButtonSubmit activeOpacity={0.5} onPress={() => {
                     if (email && telephone) {
