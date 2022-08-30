@@ -39,6 +39,9 @@ const Header: FC<Iprops> = ({ find, plates, setFind }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
                     <IconMenu name="settings" size={35}/>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                    <IconMenu name="person" size={35}/>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
                     <IconMenu name="contact-page" size={35}/>
                 </TouchableOpacity>

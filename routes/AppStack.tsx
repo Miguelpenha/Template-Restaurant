@@ -5,6 +5,7 @@ import Plate from '../pages/Plate'
 import List from '../pages/List'
 import Photo from '../pages/Photo'
 import Confirmation from '../pages/Confirmation'
+import Profile from '../pages/Profile'
 import Contact from '../pages/Contact'
 import Location from '../pages/Location'
 import Settings from '../pages/Settings'
@@ -22,6 +23,9 @@ function AppStack() {
       })}/>
       <Screen name="Photo" component={Photo}/>
       <Screen initialParams={{ transitionModal: false }} name="Confirmation" component={Confirmation} options={({ route: { params } }) => ({
+          presentation: params.transitionModal ? 'modal' : 'card'
+      })}/>
+      <Screen initialParams={{ initial: false, transitionModal: false, edit: false }} name="Profile" component={Profile} options={({ route: { params } }) => ({
           presentation: params.transitionModal ? 'modal' : 'card'
       })}/>
       <Screen initialParams={{ initial: false, transitionModal: false, edit: false }} name="Contact" component={Contact} options={({ route: { params } }) => ({

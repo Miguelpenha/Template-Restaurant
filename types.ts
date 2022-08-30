@@ -31,6 +31,15 @@ export type Inavigation = {
     location?: ILocation | null
     transitionModal?: boolean
   }
+  Profile: {
+    initial?: boolean
+    transitionModal?: boolean
+    editParams?: object | null
+    edit?: keyof Inavigation | false
+  }
+  ProfileInitial: {
+    initial?: boolean
+  }
   Contact: {
     initial?: boolean
     transitionModal?: boolean
