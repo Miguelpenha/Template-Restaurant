@@ -52,7 +52,9 @@ function Confirmation() {
             balanceConverted: toFormatSafe(dinero({ amount: balance, currency: 'BRL' })),
             location: locationOrigin || profile && profile.location,
             note,
-            methodOfPayment
+            methodOfPayment,
+            contact: profile.contact,
+            nameUser: profile.name || ''
         }))
     }, [list, withdrawal, note, balance, methodOfPayment]))
 

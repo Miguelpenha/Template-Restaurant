@@ -117,4 +117,6 @@ export interface IOrder {
   withdrawal: boolean
   methodOfPayment: string
   balanceConverted: string
+  contact: IContact
+  nameUser: string
 }
