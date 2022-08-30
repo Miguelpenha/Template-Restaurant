@@ -54,7 +54,7 @@ function Confirmation() {
             note,
             methodOfPayment,
             contact: profile.contact,
-            nameUser: profile.name || ''
+            nameUser: profile.name
         }))
     }, [list, withdrawal, note, balance, methodOfPayment]))
 
