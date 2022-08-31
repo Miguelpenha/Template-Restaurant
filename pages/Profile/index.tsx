@@ -38,7 +38,7 @@ function Profile() {
                 <Title>{edit ? 'Confirmar Perfil' : 'Perfil'}</Title>
                 <Field>
                     <Label>Nome <Required>*</Required></Label>
-                    <Input autoCapitalize="none" autoCompleteType="name" defaultValue={name} onChangeText={setName} autoCorrect selectionColor={theme.secondary} placeholder="Nome..." placeholderTextColor={theme.secondaryColor}/>
+                    <Input autoCompleteType="name" defaultValue={name} onChangeText={setName} autoCorrect selectionColor={theme.secondary} placeholder="Nome..." placeholderTextColor={theme.secondaryColor}/>
                 </Field>
                 <ButtonSubmit activeOpacity={0.5} onPress={() => {
                     if (name) {
