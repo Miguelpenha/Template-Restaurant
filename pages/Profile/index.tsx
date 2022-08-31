@@ -58,7 +58,7 @@ function Profile() {
 
                             !initial && Toast.show({
                                 type: 'success',
-                                text1: 'Perfil editada com sucesso'
+                                text1: 'Perfil editado com sucesso'
                             })
                         }
                     } else {
