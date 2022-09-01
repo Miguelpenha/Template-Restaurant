@@ -14,6 +14,10 @@ export const ButtonBack = styled(ButtonBackNotStyled)<IButtonBack>`
     left: ${props => props.transitionModal ? -2 : 3}%;
 `
 
+export const ContainerForm = styled.ScrollView`
+    
+`
+
 export const ContainerSettings = styled.TouchableOpacity`
     top: 6%;
     left: 3%;
@@ -28,16 +32,21 @@ export const Settings = styled(MaterialIcons)`
 export const Title = styled.Text`
     margin-top: 25%;
     font-weight: bold;
+    margin-bottom: 6%;
     align-self: center;
     text-align: center;
     font-size: ${RFPercentage(5)}px;
     color: ${props => props.theme.primary};
 `
 
-export const Field = styled.View`
+interface IField {
+    last?: boolean
+}
+
+export const Field = styled.View<IField>`
     width: 90%;
-    margin-top: 6%;
     align-self: center;
+    margin-bottom: ${props => props.last ? 35 : 6}%;
 `
 
 export const Label = styled.Text`
@@ -59,12 +68,24 @@ export const Input = styled.TextInput`
     color: ${props => props.theme.primary};
     border: 1px solid ${props => props.theme.primary};
 `
+
+export const SubTitle = styled.Text`
+    width: 90%;
+    margin-top: 8%;
+    margin-bottom: 6%;
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
+    font-size: ${RFPercentage(4)}px;
+    color: ${props => props.theme.primary};
+`
+
 export const ButtonSubmit = styled.TouchableOpacity`
     width: 82%;
+    bottom: 3%;
     padding: 4%;
     elevation: 8;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    position: absolute;
     align-self: center;
     align-items: center;
     border-radius: ${RFPercentage(2)}px;

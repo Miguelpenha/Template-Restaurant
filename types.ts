@@ -46,19 +46,12 @@ export type Inavigation = {
     editParams?: object | null
     edit?: keyof Inavigation | false
   }
-  ContactInitial: {
-    initial?: boolean
-  }
   Location: {
     initial?: boolean
     transitionModal?: boolean
     editParams?: object | null
     edit?: keyof Inavigation | false
   }
-  LocationInitial: {
-    initial?: boolean
-  }
-  Login: undefined
   Orders: undefined
 }
 

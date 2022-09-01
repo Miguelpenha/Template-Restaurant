@@ -62,7 +62,7 @@ function Settings() {
                                 navigation.reset({
                                     index: 0,
                                     routes: [{
-                                        name: 'LocationInitial'
+                                        name: 'ProfileInitial'
                                     }]
                                 })
                             })

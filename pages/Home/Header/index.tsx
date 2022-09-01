@@ -42,12 +42,6 @@ const Header: FC<Iprops> = ({ find, plates, setFind }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                     <IconMenu name="person" size={35}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
-                    <IconMenu name="contact-page" size={35}/>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Location')}>
-                    <IconMenu name="location-on" size={35}/>
-                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Orders')}>
                     <IconMenu name="receipt" size={35}/>
                     {ordersInUse && ordersInUse.length >= 1 && countOrdersOnHold >= 1 && <Quantity>{countOrdersOnHold}</Quantity>}
