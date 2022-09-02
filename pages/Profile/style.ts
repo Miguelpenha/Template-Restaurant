@@ -32,7 +32,7 @@ export const Settings = styled(MaterialIcons)`
 export const Title = styled.Text`
     margin-top: 25%;
     font-weight: bold;
-    margin-bottom: 6%;
+    margin-bottom: 5%;
     align-self: center;
     text-align: center;
     font-size: ${RFPercentage(5)}px;
@@ -71,7 +71,7 @@ export const Input = styled.TextInput`
 
 export const SubTitle = styled.Text`
     width: 90%;
-    margin-top: 8%;
+    margin-top: 5%;
     margin-bottom: 6%;
     font-weight: bold;
     align-self: center;
