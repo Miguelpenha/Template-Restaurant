@@ -2,9 +2,10 @@ import { useNavigation } from '@react-navigation/native'
 import { useTheme } from '../../theme'
 import { useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
+import Modal from 'react-native-modal'
 import HeaderBack from '../../components/HeaderBack'
 import { ScrollView } from 'react-native'
-import { ContainerSwitch, TextSwitch, Switch, Button, IconButton, IconUpdateButton, TextButton, Version, ContainerPoweredBy, TextPoweredBy, TextPoweredByName } from './style'
+import { ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll, ContainerSwitch, TextSwitch, Switch, Button, IconButton, IconUpdateButton, TextButton, Version, ContainerPoweredBy, TextPoweredBy, TextPoweredByName } from './style'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import checkUpdate from './checkUpdate'
 import Constants from 'expo-constants'
@@ -14,6 +15,7 @@ import { useProfile } from '../../contexts/profileContext'
 import useOrders from '../../contexts/ordersContext'
 
 function Settings() {
+    const [openModal, setOpenModal] = useState(false)
     const navigation = useNavigation()
     const { theme, themeName, mutateTheme, loadTheme } = useTheme()
     const [dark, setDark] = useState(themeName==='light' ? false : true)
@@ -23,6 +25,57 @@ function Settings() {
     
     return (
         <ContainerPd scroll={false}>
+            <Modal
+                isVisible={openModal}
+                onBackdropPress={() => setOpenModal(false)}
+                onBackButtonPress={() => setOpenModal(false)}
+            >
+                <ModalDeleteAll>
+                  <TitleModalDeleteAll>Remover todos os dados?</TitleModalDeleteAll>
+                  <FooterModalDeleteAll>
+                    <ButtonCancelModalDeleteAll onPress={() => setOpenModal(false)}>
+                      <TextButtonCancelModalDeleteAll>Cancelar</TextButtonCancelModalDeleteAll>
+                    </ButtonCancelModalDeleteAll>
+                    <ButtonSubmitModalDeleteAll onPress={() => {
+                        setOpenModal(false)
+
+                        AsyncStorage.removeItem('@templateRestaurant:theme').then(() => {
+                            AsyncStorage.removeItem('@templateRestaurant:profile').then(async () => {
+                                AsyncStorage.removeItem('@templateRestaurant:orders').then(async () => {
+                                    console.log(yellow('>> All data has been deleted'))
+                                    console.log(red('   >> @templateRestaurant:theme'))
+                                    console.log(red('   >> @templateRestaurant:orders'))
+                                    console.log(red('   >> @templateRestaurant:profile'))
+    
+                                    Toast.show({
+                                        type: 'error',
+                                        text1: 'Dados Apagados'
+                                    })
+    
+                                    await loadProfile()
+                                    await loadTheme()
+                                    await loadOrders()
+                                    
+                                    navigation.reset({
+                                        index: 0,
+                                        routes: [{
+                                            name: 'ProfileInitial'
+                                        }]
+                                    })
+                                })
+                            })
+                        })
+  
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Todos os pratos foram deletados com sucesso'
+                        })
+                    }}>
+                      <TextButtonSubmitModalDeleteAll>Remover</TextButtonSubmitModalDeleteAll>
+                    </ButtonSubmitModalDeleteAll>
+                  </FooterModalDeleteAll>
+                </ModalDeleteAll>
+            </Modal>
             <HeaderBack onClick={() => navigation.goBack()} title="Configurações"/>
             <ScrollView>
                 <ContainerSwitch>
@@ -41,34 +94,7 @@ function Settings() {
                         }}
                     />
                 </ContainerSwitch>
-                <Button onPress={() => {
-                    AsyncStorage.removeItem('@templateRestaurant:theme').then(() => {
-                        AsyncStorage.removeItem('@templateRestaurant:profile').then(async () => {
-                            AsyncStorage.removeItem('@templateRestaurant:orders').then(async () => {
-                                console.log(yellow('>> All data has been deleted'))
-                                console.log(red('   >> @templateRestaurant:theme'))
-                                console.log(red('   >> @templateRestaurant:orders'))
-                                console.log(red('   >> @templateRestaurant:profile'))
-
-                                Toast.show({
-                                    type: 'error',
-                                    text1: 'Dados Apagados'
-                                })
-
-                                await loadProfile()
-                                await loadTheme()
-                                await loadOrders()
-                                
-                                navigation.reset({
-                                    index: 0,
-                                    routes: [{
-                                        name: 'ProfileInitial'
-                                    }]
-                                })
-                            })
-                        })
-                    })
-                }}>
+                <Button onPress={() => setOpenModal(true)}>
                     <IconButton name="delete" size={30}/>
                     <TextButton>Apagar dados</TextButton>
                 </Button>
