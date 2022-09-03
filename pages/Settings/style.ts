@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 
 export const ModalDeleteAll = styled.View`
     width: 95%;
-    height: 30%;
+    height: 40%;
     padding: 6%;
     align-self: center;
     border-radius: ${RFPercentage(1)}px;
@@ -16,6 +16,18 @@ export const TitleModalDeleteAll = styled.Text`
     align-self: center;
     font-size: ${RFPercentage(3.2)}px;
     color: ${props => props.theme.color};
+`
+
+export const ContainerDataModalDeleteAll = styled.View`
+
+`
+
+export const DataModalDeleteAll = styled.Text`
+    width: 95%;
+    color: red;
+    margin-top: 5%;
+    align-self: center;
+    font-size: ${RFPercentage(2.6)}px;
 `
 
 export const FooterModalDeleteAll = styled.View`

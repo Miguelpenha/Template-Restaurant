@@ -5,7 +5,7 @@ import ContainerPd from '../../components/ContainerPd'
 import Modal from 'react-native-modal'
 import HeaderBack from '../../components/HeaderBack'
 import { ScrollView } from 'react-native'
-import { ModalDeleteAll, TitleModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll, ContainerSwitch, TextSwitch, Switch, Button, IconButton, IconUpdateButton, TextButton, Version, ContainerPoweredBy, TextPoweredBy, TextPoweredByName } from './style'
+import { ModalDeleteAll, TitleModalDeleteAll, ContainerDataModalDeleteAll, DataModalDeleteAll, FooterModalDeleteAll, ButtonCancelModalDeleteAll, TextButtonCancelModalDeleteAll, ButtonSubmitModalDeleteAll, TextButtonSubmitModalDeleteAll, ContainerSwitch, TextSwitch, Switch, Button, IconButton, IconUpdateButton, TextButton, Version, ContainerPoweredBy, TextPoweredBy, TextPoweredByName } from './style'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import checkUpdate from './checkUpdate'
 import Constants from 'expo-constants'
@@ -31,7 +31,12 @@ function Settings() {
                 onBackButtonPress={() => setOpenModal(false)}
             >
                 <ModalDeleteAll>
-                  <TitleModalDeleteAll>Remover todos os dados?</TitleModalDeleteAll>
+                  <TitleModalDeleteAll>Apagar todos os dados?</TitleModalDeleteAll>
+                  <ContainerDataModalDeleteAll>
+                    <DataModalDeleteAll>@templateRestaurant:theme</DataModalDeleteAll>
+                    <DataModalDeleteAll>@templateRestaurant:profile</DataModalDeleteAll>
+                    <DataModalDeleteAll>@templateRestaurant:orders</DataModalDeleteAll>
+                  </ContainerDataModalDeleteAll>
                   <FooterModalDeleteAll>
                     <ButtonCancelModalDeleteAll onPress={() => setOpenModal(false)}>
                       <TextButtonCancelModalDeleteAll>Cancelar</TextButtonCancelModalDeleteAll>
@@ -65,13 +70,8 @@ function Settings() {
                                 })
                             })
                         })
-  
-                        Toast.show({
-                            type: 'error',
-                            text1: 'Todos os pratos foram deletados com sucesso'
-                        })
                     }}>
-                      <TextButtonSubmitModalDeleteAll>Remover</TextButtonSubmitModalDeleteAll>
+                      <TextButtonSubmitModalDeleteAll>Apagar</TextButtonSubmitModalDeleteAll>
                     </ButtonSubmitModalDeleteAll>
                   </FooterModalDeleteAll>
                 </ModalDeleteAll>
