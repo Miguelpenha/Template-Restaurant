@@ -52,7 +52,7 @@ export default function Plate() {
           <TouchableOpacity onPress={() => navigation.navigate('Photo', {
             plate: item
           })}>
-            <IconZoom size={35} name="zoom-in"/>
+            <IconZoom size={30} name="zoom-in"/>
             <Photo resizeMode="cover" source={{
               uri: item.photo.url
             }}/>
