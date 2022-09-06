@@ -2,7 +2,7 @@ import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/nativ
 import { useCallback, useRef, useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
 import useList from '../../contexts/listContext'
-import { ButtonBack, Title, Balance, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, LabelMethodPayment, ButtonMethodOfPayment, MethodOfPayment, LabelNote, Note, ButtonSubmit, TextButtonSubmit, TitleMethod, ContainerMethods, ContainerMethod, Method } from './style'
+import { ButtonBack, Title, Balance, LabelMethodPayment, ButtonMethodOfPayment, MethodOfPayment, ContainerSwitchWithdrawal, TextSwitchWithdrawal, SwitchWithdrawal, LabelNote, Note, ButtonSubmit, TextButtonSubmit, TitleMethod, ContainerMethods, ContainerMethod, Method } from './style'
 import toFormatSafe from '../../utils/toFormatSafe'
 import dinero from 'dinero.js'
 import { ILocation, IOrder } from '../../types'
@@ -64,6 +64,10 @@ function Confirmation() {
             <ScrollView>
                 <Title>Confirmação</Title>
                 <Balance>Total {toFormatSafe(dinero({ amount: balance, currency: 'BRL' }))}</Balance>
+                <LabelMethodPayment>Forma de pagamento</LabelMethodPayment>
+                <ButtonMethodOfPayment onPress={() => modalMethodOfPayment.current.open()}>
+                    <MethodOfPayment>{methodOfPayment}</MethodOfPayment>
+                </ButtonMethodOfPayment>
                 <ContainerSwitchWithdrawal>
                     <TextSwitchWithdrawal>Retirada no Local</TextSwitchWithdrawal>
                     <SwitchWithdrawal
@@ -73,10 +77,6 @@ function Confirmation() {
                         trackColor={{false: theme.secondary, true: theme.primary}}
                     />
                 </ContainerSwitchWithdrawal>
-                <LabelMethodPayment>Forma de pagamento</LabelMethodPayment>
-                <ButtonMethodOfPayment onPress={() => modalMethodOfPayment.current.open()}>
-                    <MethodOfPayment>{methodOfPayment}</MethodOfPayment>
-                </ButtonMethodOfPayment>
                 <LabelNote>Alguma observação?</LabelNote>
                 <Note maxLength={160} multiline autoCapitalize="sentences" autoCompleteType="username" defaultValue={note} onChangeText={setNote} autoCorrect selectionColor={theme.primary} placeholder="Observação..." placeholderTextColor={theme.secondaryColor}/>
                 <ButtonSubmit activeOpacity={0.5} onPress={async () => {

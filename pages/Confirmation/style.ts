@@ -29,23 +29,6 @@ export const Balance = styled.Text`
     color: ${props => props.theme.primary};
 `
 
-export const ContainerSwitchWithdrawal = styled.View`
-    margin-top: 8%;
-    margin-left: 6%;
-    flex-direction: row;
-`
-
-export const TextSwitchWithdrawal = styled.Text`
-    align-self: center;
-    font-size: ${RFPercentage(3)}px;
-    color: ${props => props.theme.primary};
-`
-
-export const SwitchWithdrawal = styled.Switch`
-    margin-left: 4%;
-    margin-right: auto;
-`
-
 export const LabelMethodPayment = styled.Text`
     margin-top: 8%;
     font-weight: bold;
@@ -70,9 +53,28 @@ export const MethodOfPayment = styled.Text`
     color: ${props => props.theme.primary};
 `
 
+export const ContainerSwitchWithdrawal = styled.View`
+    margin-top: 8%;
+    margin-left: 6%;
+    align-self: center;
+    flex-direction: row;
+`
+
+export const TextSwitchWithdrawal = styled.Text`
+    font-weight: bold;
+    align-self: center;
+    font-size: ${RFPercentage(3)}px;
+    color: ${props => props.theme.primary};
+`
+
+export const SwitchWithdrawal = styled.Switch`
+    margin-left: 4%;
+    margin-right: auto;
+`
+
 export const LabelNote = styled.Text`
     width: 85%;
-    margin-top: 5%;
+    margin-top: 10%;
     padding-top: 4%;
     font-weight: bold;
     align-self: center;
@@ -94,8 +96,8 @@ export const Note = styled.TextInput`
 
 export const ButtonSubmit = styled.TouchableOpacity`
     width: 82%;
-    bottom: 8%;
-    padding: 4%;
+    bottom: 11%;
+    padding: 5%;
     elevation: 8;
     position: absolute;
     align-self: center;
