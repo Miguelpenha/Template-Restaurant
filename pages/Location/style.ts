@@ -26,7 +26,7 @@ export const Settings = styled(MaterialIcons)`
 `
 
 export const Title = styled.Text`
-    margin-top: 25%;
+    margin-top: 30%;
     font-weight: bold;
     align-self: center;
     text-align: center;
