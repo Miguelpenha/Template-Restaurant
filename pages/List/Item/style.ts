@@ -5,7 +5,7 @@ export const Container = styled.TouchableOpacity`
     width: 90%;
     padding: 5%;
     elevation: 10;
-    margin-top: 5%;
+    margin-top: 10%;
     align-self: center;
     flex-direction: row;
     border-radius: ${RFPercentage(2)}px;
