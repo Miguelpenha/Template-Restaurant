@@ -2,7 +2,7 @@ import { IPlate } from '../../../types'
 import { Dispatch, SetStateAction, FC, useState, useCallback } from 'react'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
-import { Menu, IconMenu, Quantity, Title, InputFind, NotFoundMessage } from './style'
+import { Menu, IconMenu, Quantity, Title, InputFind, ContainerPeoplesCountFilter, NotFoundMessage, ContainerPeoplesCountFilterIconLeft, PeoplesCountFilterIcon, ContainerPeoplesCountFilterIconRight, PeoplesCountFilter } from './style'
 import { TouchableOpacity } from 'react-native'
 import useList from '../../../contexts/listContext'
 import useOrders from '../../../contexts/ordersContext'
@@ -10,10 +10,12 @@ import useOrders from '../../../contexts/ordersContext'
 interface Iprops {
     find: string
     plates: IPlate[]
+    peoplesCountFilter: number
     setFind: Dispatch<SetStateAction<string>>
+    setPeoplesCountFilter: Dispatch<SetStateAction<number>>
 }
 
-const Header: FC<Iprops> = ({ find, plates, setFind }) => {
+const Header: FC<Iprops> = ({ find, plates, peoplesCountFilter, setFind, setPeoplesCountFilter }) => {
     const navigation = useNavigation()
     const theme = useTheme()
     const { list } = useList()
@@ -61,6 +63,15 @@ const Header: FC<Iprops> = ({ find, plates, setFind }) => {
                 style={{ shadowColor: theme.primary }}
                 placeholderTextColor={theme.secondaryColor}
             />
+            <ContainerPeoplesCountFilter>
+              <ContainerPeoplesCountFilterIconLeft onPress={() => peoplesCountFilter >= 2 && setPeoplesCountFilter(peoplesCountFilter-1)}>
+                <PeoplesCountFilterIcon>-</PeoplesCountFilterIcon>
+              </ContainerPeoplesCountFilterIconLeft>
+              <PeoplesCountFilter>{peoplesCountFilter}</PeoplesCountFilter>
+              <ContainerPeoplesCountFilterIconRight onPress={() => setPeoplesCountFilter(peoplesCountFilter+1)}>
+                <PeoplesCountFilterIcon>+</PeoplesCountFilterIcon>
+              </ContainerPeoplesCountFilterIconRight>
+            </ContainerPeoplesCountFilter>
             {!exists && <NotFoundMessage>Sem resultados {':('}</NotFoundMessage>}
         </>
     )

@@ -47,6 +47,39 @@ export const InputFind = styled.TextInput`
     background-color: ${props => props.theme.backgroundColor};
 `
 
+export const ContainerPeoplesCountFilter = styled.View`
+    width: 35%;
+    margin-left: 10%;
+    flex-direction: row;
+    align-items: center;
+    border-radius: ${RFPercentage(3)}px;
+    border: 1px solid ${props => props.theme.primary};
+`
+
+export const ContainerPeoplesCountFilterIconLeft = styled.TouchableOpacity`
+    width: 20%;
+    margin: auto;
+    align-items: center;
+`
+
+export const ContainerPeoplesCountFilterIconRight = styled.TouchableOpacity`
+    width: 20%;
+    margin: auto;
+    align-items: center;
+`
+
+export const PeoplesCountFilterIcon = styled.Text`
+    font-size: ${RFPercentage(7)}px;
+    color: ${props => props.theme.primary};
+`
+
+export const PeoplesCountFilter = styled.Text`
+    margin: auto;
+    font-weight: bold;
+    font-size: ${RFPercentage(4)}px;
+    color: ${props => props.theme.primary};
+`
+
 export const NotFoundMessage = styled.Text`
     padding: 3% 5%;
     margin-top: 5%;

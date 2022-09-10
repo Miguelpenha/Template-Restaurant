@@ -13,6 +13,7 @@ import Footer from './Footer'
 
 export default function Home() {
   const [find, setFind] = useState('')
+  const [peoplesCountFilter, setPeoplesCountFilter] = useState(1)
   const { data: plates, mutate: mutatePlates } = api.get<IPlate[]>('/plates?photo=true')
   const theme = useTheme()
   const [refreshing, setRefreshing] = useState(false)
@@ -36,9 +37,9 @@ export default function Home() {
           data={plates}
           keyExtractor={(item: IPlate) => item._id}
           contentContainerStyle={{ paddingBottom: '25%' }}
-          ListHeaderComponent={<Header plates={plates} find={find} setFind={setFind}/>}
+          ListHeaderComponent={<Header peoplesCountFilter={peoplesCountFilter} setPeoplesCountFilter={setPeoplesCountFilter} plates={plates} find={find} setFind={setFind}/>}
           renderItem={({ item }: ListRenderItemInfo<IPlate>) => (
-            (item.name.toUpperCase().includes(find.toUpperCase()) || item.description.toUpperCase().includes(find.toUpperCase())) && <Plate plate={item}/>
+            (item.name.toUpperCase().includes(find.toUpperCase()) || item.description.toUpperCase().includes(find.toUpperCase())) && item.peoplesCount >= peoplesCountFilter && <Plate plate={item}/>
           )}
           refreshControl={(
             <RefreshControl

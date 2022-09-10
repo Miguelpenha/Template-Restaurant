@@ -28,7 +28,7 @@ const Plate: FC<Iprops> = ({ plate }) => {
                 <PeoplesCount>Serve {plate.peoplesCount} {plate.peoplesCount <= 1 ? 'pessoa' : 'pessoas'}</PeoplesCount>
                 <ContainerPriceAndAdded>
                     <Price>{plate.priceConverted}</Price>
-                    {item && <Added>Já Adicionado</Added>}
+                    {item && <Added>Já adicionado</Added>}
                 </ContainerPriceAndAdded>
             </View>
             <Photo resizeMode="center" source={{
