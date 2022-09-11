@@ -1,15 +1,16 @@
 import { IOrder } from '../../../types'
 import { Dispatch, SetStateAction, FC } from 'react'
 import { Container, Header, Balance, ContainerIconDelete, IconDelete, Note, Footer, Created, FinishedStatus, WaitStatus } from './style'
+import { TouchableOpacityProps } from 'react-native'
 
-interface Iprops {
+interface Iprops extends TouchableOpacityProps {
     order: IOrder
     setOpenModal: Dispatch<SetStateAction<IOrder | null | undefined>>
 }
 
-const Order: FC<Iprops> = ({ order, setOpenModal }) => {
+const Order: FC<Iprops> = ({ order, setOpenModal, ...props }) => {
     return (
-        <Container>
+        <Container {...props}>
             <Header>
                 <Balance>{order.balanceConverted}</Balance>
                 {!order.finished && (

@@ -67,7 +67,7 @@ function Orders() {
                 <OrdersContainer 
                     data={orders}
                     keyExtractor={(item: IOrder) => item._id}
-                    renderItem={({ item }: ListRenderItemInfo<IOrder>) => <Order setOpenModal={setOpenModal} order={item}/>}
+                    renderItem={({ item }: ListRenderItemInfo<IOrder>) => <Order onPress={() => navigation.navigate('Order', { orderID: item._id })} setOpenModal={setOpenModal} order={item}/>}
                     refreshControl={(
                         <RefreshControl
                           refreshing={refreshing}

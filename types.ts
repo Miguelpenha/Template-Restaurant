@@ -53,6 +53,9 @@ export type Inavigation = {
     edit?: keyof Inavigation | false
   }
   Orders: undefined
+  Order: {
+    orderID: string
+  }
 }
 
 export interface ICreated {
