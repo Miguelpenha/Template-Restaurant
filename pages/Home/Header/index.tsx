@@ -2,7 +2,7 @@ import { IPlate } from '../../../types'
 import { Dispatch, SetStateAction, FC, useState, useCallback } from 'react'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
-import { Menu, IconMenu, Quantity, Title, InputFind, ContainerPeoplesCountFilter, NotFoundMessage, ContainerPeoplesCountFilterIconLeft, PeoplesCountFilterIcon, ContainerPeoplesCountFilterIconRight, PeoplesCountFilter } from './style'
+import { Menu, IconMenu, Quantity, Title, InputFind, ContainerPeoplesCountFilterAndLabel, LabelPeoplesCountFilter, ContainerPeoplesCountFilter, NotFoundMessage, ContainerPeoplesCountFilterIconLeft, PeoplesCountFilterIcon, ContainerPeoplesCountFilterIconRight, PeoplesCountFilter } from './style'
 import { TouchableOpacity } from 'react-native'
 import useList from '../../../contexts/listContext'
 import useOrders from '../../../contexts/ordersContext'
@@ -63,15 +63,18 @@ const Header: FC<Iprops> = ({ find, plates, peoplesCountFilter, setFind, setPeop
                 style={{ shadowColor: theme.primary }}
                 placeholderTextColor={theme.secondaryColor}
             />
-            <ContainerPeoplesCountFilter>
-              <ContainerPeoplesCountFilterIconLeft onPress={() => peoplesCountFilter >= 2 && setPeoplesCountFilter(peoplesCountFilter-1)}>
-                <PeoplesCountFilterIcon>-</PeoplesCountFilterIcon>
-              </ContainerPeoplesCountFilterIconLeft>
-              <PeoplesCountFilter>{peoplesCountFilter}</PeoplesCountFilter>
-              <ContainerPeoplesCountFilterIconRight onPress={() => setPeoplesCountFilter(peoplesCountFilter+1)}>
-                <PeoplesCountFilterIcon>+</PeoplesCountFilterIcon>
-              </ContainerPeoplesCountFilterIconRight>
-            </ContainerPeoplesCountFilter>
+            <ContainerPeoplesCountFilterAndLabel>
+                <LabelPeoplesCountFilter>Serve a quantas pessoas</LabelPeoplesCountFilter>
+                <ContainerPeoplesCountFilter>
+                    <ContainerPeoplesCountFilterIconLeft onPress={() => peoplesCountFilter >= 2 && setPeoplesCountFilter(peoplesCountFilter-1)}>
+                    <PeoplesCountFilterIcon>-</PeoplesCountFilterIcon>
+                    </ContainerPeoplesCountFilterIconLeft>
+                    <PeoplesCountFilter>{peoplesCountFilter}</PeoplesCountFilter>
+                    <ContainerPeoplesCountFilterIconRight onPress={() => setPeoplesCountFilter(peoplesCountFilter+1)}>
+                    <PeoplesCountFilterIcon>+</PeoplesCountFilterIcon>
+                    </ContainerPeoplesCountFilterIconRight>
+                </ContainerPeoplesCountFilter>
+            </ContainerPeoplesCountFilterAndLabel>
             {!exists && <NotFoundMessage>Sem resultados {':('}</NotFoundMessage>}
         </>
     )

@@ -47,9 +47,18 @@ export const InputFind = styled.TextInput`
     background-color: ${props => props.theme.backgroundColor};
 `
 
+export const ContainerPeoplesCountFilterAndLabel = styled.View`
+    margin-left: 10%;
+`
+
+export const LabelPeoplesCountFilter = styled.Text`
+    margin-bottom: 5%;
+    font-size: ${RFPercentage(2.5)}px;
+    color: ${props => props.theme.primary};
+`
+
 export const ContainerPeoplesCountFilter = styled.View`
     width: 35%;
-    margin-left: 10%;
     flex-direction: row;
     align-items: center;
     border-radius: ${RFPercentage(3)}px;
