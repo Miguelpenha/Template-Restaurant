@@ -66,8 +66,8 @@ const Header: FC<Iprops> = ({ find, plates, peoplesCountFilter, setFind, setPeop
             <ContainerPeoplesCountFilterAndLabel>
                 <LabelPeoplesCountFilter>Serve a quantas pessoas</LabelPeoplesCountFilter>
                 <ContainerPeoplesCountFilter>
-                    <ContainerPeoplesCountFilterIconLeft onPress={() => peoplesCountFilter >= 2 && setPeoplesCountFilter(peoplesCountFilter-1)}>
-                    <PeoplesCountFilterIcon>-</PeoplesCountFilterIcon>
+                    <ContainerPeoplesCountFilterIconLeft disabled={peoplesCountFilter <= 1} onPress={() => peoplesCountFilter >= 2 && setPeoplesCountFilter(peoplesCountFilter-1)}>
+                    <PeoplesCountFilterIcon disabled={peoplesCountFilter <= 1}>-</PeoplesCountFilterIcon>
                     </ContainerPeoplesCountFilterIconLeft>
                     <PeoplesCountFilter>{peoplesCountFilter}</PeoplesCountFilter>
                     <ContainerPeoplesCountFilterIconRight onPress={() => setPeoplesCountFilter(peoplesCountFilter+1)}>

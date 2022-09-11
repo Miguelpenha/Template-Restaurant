@@ -66,20 +66,24 @@ export const ContainerPeoplesCountFilter = styled.View`
 `
 
 export const ContainerPeoplesCountFilterIconLeft = styled.TouchableOpacity`
-    width: 20%;
+    width: 22%;
     margin: auto;
     align-items: center;
 `
 
 export const ContainerPeoplesCountFilterIconRight = styled.TouchableOpacity`
-    width: 20%;
+    width: 22%;
     margin: auto;
     align-items: center;
 `
 
-export const PeoplesCountFilterIcon = styled.Text`
+interface IPeoplesCountFilterIcon {
+    disabled?: boolean
+}
+
+export const PeoplesCountFilterIcon = styled.Text<IPeoplesCountFilterIcon>`
     font-size: ${RFPercentage(7)}px;
-    color: ${props => props.theme.primary};
+    color: ${props => !props.disabled ? props.theme.primary : props.theme.secondary};
 `
 
 export const PeoplesCountFilter = styled.Text`
