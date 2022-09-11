@@ -11,22 +11,29 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
 
 export const Name = styled.Text`
     margin-top: 25%;
-    align-self: center;
+    margin-left: 10%;
     font-size: ${RFPercentage(4)}px;
     color: ${props => props.theme.primary};
 `
 
 export const MethodOfPayment = styled.Text`
     margin-top: 5%;
-    align-self: center;
+    margin-left: 10%;
     font-size: ${RFPercentage(3)}px;
     color: ${props => props.theme.color};
 `
 
+export const ItemsCount = styled.Text`
+    margin-top: 5%;
+    margin-left: 10%;
+    font-size: ${RFPercentage(3)}px;
+    color: ${props => props.theme.secondary};
+`
+
 export const Price = styled.Text`
     margin-top: 5%;
+    margin-left: 10%;
     font-weight: bold;
-    align-self: center;
     font-size: ${RFPercentage(4)}px;
     color: ${props => props.theme.color};
 `
