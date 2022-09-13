@@ -10,9 +10,9 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
 `
 
 export const Name = styled.Text`
-    margin-top: 25%;
+    margin-top: 28%;
     margin-left: 10%;
-    font-size: ${RFPercentage(4)}px;
+    font-size: ${RFPercentage(4.5)}px;
     color: ${props => props.theme.primary};
 `
 
@@ -24,14 +24,14 @@ export const MethodOfPayment = styled.Text`
 `
 
 export const ItemsCount = styled.Text`
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 10%;
     font-size: ${RFPercentage(3)}px;
     color: ${props => props.theme.secondary};
 `
 
 export const Price = styled.Text`
-    margin-top: 5%;
+    margin-top: 4%;
     margin-left: 10%;
     font-weight: bold;
     font-size: ${RFPercentage(4)}px;
