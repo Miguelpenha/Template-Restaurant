@@ -35,7 +35,7 @@ export const Price = styled.Text`
     margin-left: 10%;
     font-weight: bold;
     font-size: ${RFPercentage(4)}px;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.primary};
 `
 
 export const ContainerButtons = styled.View`

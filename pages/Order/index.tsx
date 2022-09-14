@@ -26,12 +26,16 @@ export default function Plate() {
           <ItemsCount>{order.list.length} {order.list.length == 1 ? 'item' : 'items'}</ItemsCount>
           <Price>{order.balanceConverted}</Price>
           <ContainerButtons>
-            <ButtonCancel>
-              <TextButtonCancel>Cancelar pedido</TextButtonCancel>
-            </ButtonCancel>
-            <ButtonDelivered>
-              <TextButtonDelivered>Pedido entregue</TextButtonDelivered>
-            </ButtonDelivered>
+            {!order.canceled && (
+              <ButtonCancel>
+                <TextButtonCancel>Cancelar pedido</TextButtonCancel>
+              </ButtonCancel>
+            )}
+            {!order.finished && (
+              <ButtonDelivered>
+                <TextButtonDelivered>Pedido entregue</TextButtonDelivered>
+              </ButtonDelivered>
+            )}
           </ContainerButtons>
         </ScrollView>
       ) : <Loading color={theme.primary} size={Platform.OS === 'android' ? 50 : 'large'}/>}
