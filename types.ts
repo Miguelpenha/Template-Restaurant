@@ -115,13 +115,15 @@ export interface IOrder {
   _id: string
   note: string
   balance: number
+  nameUser: string
   created: ICreated
   list: IItemList[]
+  contact: IContact
+  canceled?: boolean
   finished?: boolean
   location: ILocation
   withdrawal: boolean
   methodOfPayment: string
   balanceConverted: string
-  contact: IContact
-  nameUser: string
+  isBeingPrepared?: boolean
 }

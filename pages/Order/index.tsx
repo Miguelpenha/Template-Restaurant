@@ -2,7 +2,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import api from '../../api'
 import { IOrder } from '../../types'
 import ContainerPd from '../../components/ContainerPd'
-import { ButtonBack, Name, MethodOfPayment, ItemsCount, Price, Loading } from './style'
+import { ButtonBack, Name, MethodOfPayment, ItemsCount, Price, ContainerButtons, ButtonCancel, TextButtonCancel, ButtonDelivered, TextButtonDelivered, Loading } from './style'
 import { ScrollView, Platform } from 'react-native'
 import { useTheme } from 'styled-components'
 
@@ -25,6 +25,14 @@ export default function Plate() {
           <MethodOfPayment>Método de pagamento: {order.methodOfPayment}</MethodOfPayment>
           <ItemsCount>{order.list.length} {order.list.length == 1 ? 'item' : 'items'}</ItemsCount>
           <Price>{order.balanceConverted}</Price>
+          <ContainerButtons>
+            <ButtonCancel>
+              <TextButtonCancel>Cancelar pedido</TextButtonCancel>
+            </ButtonCancel>
+            <ButtonDelivered>
+              <TextButtonDelivered>Pedido entregue</TextButtonDelivered>
+            </ButtonDelivered>
+          </ContainerButtons>
         </ScrollView>
       ) : <Loading color={theme.primary} size={Platform.OS === 'android' ? 50 : 'large'}/>}
     </ContainerPd>

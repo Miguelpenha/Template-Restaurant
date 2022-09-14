@@ -38,6 +38,40 @@ export const Price = styled.Text`
     color: ${props => props.theme.color};
 `
 
+export const ContainerButtons = styled.View`
+    margin-top: 65%;
+    align-items: center;
+`
+
+export const ButtonCancel = styled.TouchableOpacity`
+    width: 60%;
+    padding: 6%;
+    background-color: red;
+    border-radius: ${RFPercentage(1)}px;
+`
+
+export const TextButtonCancel = styled.Text`
+    font-weight: bold;
+    align-self: center;
+    font-size: ${RFPercentage(3)}px;
+    color: ${props => props.theme.color};
+`
+
+export const ButtonDelivered = styled.TouchableOpacity`
+    width: 60%;
+    padding: 6%;
+    margin-top: 10%;
+    border-radius: ${RFPercentage(1)}px;
+    background-color: ${props => props.theme.primary};
+`
+
+export const TextButtonDelivered = styled.Text`
+    font-weight: bold;
+    align-self: center;
+    font-size: ${RFPercentage(3)}px;
+    color: ${props => props.theme.backgroundColor};
+`
+
 export const Loading = styled.ActivityIndicator`
     margin: auto;
 `
