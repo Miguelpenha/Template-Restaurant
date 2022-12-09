@@ -53,6 +53,7 @@ const status = css`
     padding: 5%;
     margin-left: auto;
     text-align: center;
+    align-self: flex-end;
     border-radius: ${RFPercentage(3)}px;
 `
 
