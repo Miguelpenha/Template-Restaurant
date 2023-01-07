@@ -4,7 +4,7 @@ import useList from '../../contexts/listContext'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
 import ContainerPd from '../../components/ContainerPd'
-import { ButtonBack, IconZoom, Photo, Name, Description, PeoplesCount, Price, LabelNote, Note, ContainerCountAndButton, ContainerCount, ContainerCountIconLeft, ContainerCountIconRight, CountIcon, Count, ButtonSubmit, TextButtonSubmit } from './style'
+import { ButtonBack, Photo, Name, Description, PeoplesCount, Price, LabelNote, Note, ContainerCountAndButton, ContainerCount, ContainerCountIconLeft, ContainerCountIconRight, CountIcon, Count, ButtonSubmit, TextButtonSubmit } from './style'
 import { ScrollView } from 'react-native'
 import Toast from 'react-native-toast-message'
 import { MaterialIcons } from '@expo/vector-icons'
@@ -52,7 +52,6 @@ export default function Plate() {
           <TouchableOpacity onPress={() => navigation.navigate('Photo', {
             plate: item
           })}>
-            <IconZoom size={30} name="zoom-in"/>
             <Photo resizeMode="cover" source={{
               uri: item.photo.url
             }}/>

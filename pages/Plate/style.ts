@@ -1,6 +1,5 @@
 import styled from 'styled-components/native'
 import ButtonBackNotStyled from '../../components/ButtonBack'
-import { MaterialIcons } from '@expo/vector-icons'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const ButtonBack = styled(ButtonBackNotStyled)`
@@ -9,15 +8,6 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
     z-index: 2;
     position: absolute;
 `
-
-export const IconZoom = styled(MaterialIcons)`
-    right: 4%;
-    top: 14.5%;
-    z-index: 1;
-    position: absolute;
-    color: ${props => props.theme.secondaryColor};
-`
-
 export const Photo = styled.Image`
     width: 100%;
     aspect-ratio: 1;
